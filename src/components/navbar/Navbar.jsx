@@ -4,22 +4,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import DropDown from '../dropdown/DropDown';
-import Drower1 from '../drower/Drower1';
-import { capitalize, Drawer, Paper, Stack } from '@mui/material';
 import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
-import { Language, Search } from '@mui/icons-material';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import Logo from '../../assets/img/logo.png'
+import Logo from '../../assets/img/Logo.png'
 import Drawer1 from '../drower/Drower1';
 
 export default function Navbar() {
