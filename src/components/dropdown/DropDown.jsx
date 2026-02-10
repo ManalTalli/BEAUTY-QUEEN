@@ -15,7 +15,7 @@ const DropDown = ({ title, items }) => {
   };
 
   return (
-    <div>
+    <>
       <Button
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
@@ -42,7 +42,7 @@ const DropDown = ({ title, items }) => {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </>
   );
 };
 

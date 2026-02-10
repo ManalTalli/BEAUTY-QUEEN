@@ -11,6 +11,8 @@ import { Link as routerLink } from 'react-router-dom';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Logo from '../../assets/img/Logo.png'
 import Drawer1 from '../drower/Drower1';
+import Drawer2 from '../drower/Drower2';
+
 
 export default function Navbar() {
   const langList =['English','Arabic']
@@ -43,7 +45,7 @@ export default function Navbar() {
             <Box color='black' display='flex' gap='24px'>
               <Typography><DropDown title='Language' items={langList}/></Typography>
               <Drawer1 drower='SEARCH'/>
-              <Drawer1 drower='ACCOUNT'/>
+              <Drawer2 drower='ACCOUNT'/>
               <Link component={routerLink} to={'/Cart'} color='#000'><ShoppingBagOutlinedIcon/></Link>
               
             </Box>

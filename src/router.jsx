@@ -6,6 +6,9 @@ import Bestsellers from "./pages/bestsellers/Bestsellers";
 import Gifts from "./pages/gifts/Gifts";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
+import Register from "./pages/auth/register/Register";
+import Login from "./pages/auth/login/Login";
+import AuthLayout from "./layouts/AuthLayout";
 
 
 const router = createBrowserRouter ([
@@ -38,7 +41,21 @@ const router = createBrowserRouter ([
                 path:'/Cart',
                 element:<Cart/>
             },
-
+            
+        ]
+    },
+    {
+        path:'/',
+        element:<AuthLayout/>,
+        children:[
+            {
+                path:'/Register',
+                element:<Register/>
+            },
+            {
+                path:'/Login',
+                element:<Login/>
+            }
         ]
     }
 ])
