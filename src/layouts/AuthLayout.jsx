@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 export default function AuthLayout() {
   return (
     <div>
-        <Container><Outlet/></Container>
+        <Container maxWidth='24px'><Outlet/></Container>
       
     </div>
   )

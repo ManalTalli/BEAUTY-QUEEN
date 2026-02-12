@@ -4,6 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup'
 import { registerSchema } from '../../../validation/RegisterSchema';
+import BackHome from '../../../components/backHome/BackHome';
 
 export default function Register() {
   const {register , handleSubmit , formState :{errors}} = useForm ({resolver: yupResolver(registerSchema)});
@@ -19,6 +20,7 @@ export default function Register() {
 
   return (
     <Box component='section' className=''>
+      <BackHome/>
       <Typography component='h2'>CREATE ACCOUNT</Typography>
       <Box component={'form'} onSubmit={handleSubmit(registerForm)} display={'flex'} flexDirection={'column'}>
         <TextField {...register('userName')} fullWidth label="user name" variant='outlined' error={errors.userName} helperText={errors.userName?.message}/>
