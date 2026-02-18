@@ -9,6 +9,7 @@ import Cart from "./pages/cart/Cart";
 import Register from "./pages/auth/register/Register";
 import Login from "./pages/auth/login/Login";
 import AuthLayout from "./layouts/AuthLayout";
+import Terms from "./pages/terms/Terms";
 
 
 const router = createBrowserRouter ([
@@ -41,6 +42,10 @@ const router = createBrowserRouter ([
                 path:'/Cart',
                 element:<Cart/>
             },
+            {
+                path:'/Terms',
+                element:<Terms/>
+            }
             
         ]
     },
