@@ -7,6 +7,6 @@ export default function Categories() {
     if (isLoading) return <CircularProgress/>
     if (isError) return <Box color={'red'}>{error.message}</Box>
   return (
-    <Box>{data.response.map (category=> <Box key={category.id}>{category.name} </Box>)}</Box>
+    <Box>{data.response.data.map (category=> <Box key={category.id}>{category.name} </Box>)}</Box>
   )
 }
