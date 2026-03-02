@@ -1,4 +1,4 @@
-import axiosInstance from '../../api/axiosInstance'
+import axiosInstance from '../api/axiosInstance'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useCategories() {

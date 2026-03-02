@@ -1,4 +1,4 @@
-import authAxiosInstance from '../../api/authAxiosInstance';
+import authAxiosInstance from '../api/authAxiosInstance';
 import { useQuery } from '@tanstack/react-query'
 
 export default function useCart() {
