@@ -4,7 +4,7 @@ import axiosInstance from "../api/axiosInstance"
 
 export default function useProducts(){
     const getProducts = async ()=>{
-        const response = await axiosInstance.get(`/Products`);
+        const response = await axiosInstance.get(`/Products?limit=100`);
         return response.data;
     }
     const query= useQuery({
