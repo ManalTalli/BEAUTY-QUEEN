@@ -11,6 +11,7 @@ import Login from "./pages/auth/login/Login";
 import AuthLayout from "./layouts/AuthLayout";
 import Terms from "./pages/terms/Terms";
 import ProductDetails from "./pages/productDetails/ProductDetails";
+import ProtectedRouter from "./ProtectedRouter";
 
 
 const router = createBrowserRouter ([
@@ -24,32 +25,53 @@ const router = createBrowserRouter ([
             },
             {
                 path:'/Shop',
-                element:<Shop/>
+                element:
+                <ProtectedRouter>
+                <Shop/>
+                </ProtectedRouter>
             },
             {
                 path:'/shop/product/:id',
-                element:<ProductDetails/>
+                element:
+                <ProtectedRouter>
+                <ProductDetails/>
+                </ProtectedRouter>
             },
 
             {
                 path:'/NewArrivals',
-                element:<NewArrivals/>
+                element:
+                <ProtectedRouter>
+                <NewArrivals/>
+                </ProtectedRouter>
             },
             {
                 path:'/Bestsellers',
-                element:<Bestsellers/>
+                element:
+                <ProtectedRouter>
+                <Bestsellers/>
+                </ProtectedRouter>
             },
             {
                 path:'/Gifts',
-                element:<Gifts/>
+                element:
+                <ProtectedRouter>
+                <Gifts/>
+                </ProtectedRouter>
             },
             {
                 path:'/Cart',
-                element:<Cart/>
+                element:
+                <ProtectedRouter>
+                <Cart/>
+                </ProtectedRouter>
             },
             {
                 path:'/Terms',
-                element:<Terms/>
+                element:
+                <ProtectedRouter>
+                <Terms/>
+                </ProtectedRouter>
             }
             
         ]
