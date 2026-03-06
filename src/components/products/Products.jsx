@@ -9,7 +9,7 @@ export default function Products() {
   if (isLoading) return <Loader/>
   if (isError) return <Box color={'red'}>{error.message}</Box>
   return (
-    <Box classname='products' paddingTop={'50px'} width={'100%'}>
+    <Box className='products' paddingTop={'50px'} width={'100%'}>
 
         <Grid container gap={'30px'}>
           {data.response.data.map (product =>
