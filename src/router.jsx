@@ -12,6 +12,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import Terms from "./pages/terms/Terms";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import ProtectedRouter from "./ProtectedRouter";
+import Checkout from "./pages/checkout/Checkout";
 
 
 const router = createBrowserRouter ([
@@ -24,14 +25,14 @@ const router = createBrowserRouter ([
                 element :<Home />
             },
             {
-                path:'/Shop',
+                path:'Shop',
                 element:
                 <ProtectedRouter>
                 <Shop/>
                 </ProtectedRouter>
             },
             {
-                path:'/shop/product/:id',
+                path:'shop/product/:id',
                 element:
                 <ProtectedRouter>
                 <ProductDetails/>
@@ -39,35 +40,42 @@ const router = createBrowserRouter ([
             },
 
             {
-                path:'/NewArrivals',
+                path:'NewArrivals',
                 element:
                 <ProtectedRouter>
                 <NewArrivals/>
                 </ProtectedRouter>
             },
             {
-                path:'/Bestsellers',
+                path:'Bestsellers',
                 element:
                 <ProtectedRouter>
                 <Bestsellers/>
                 </ProtectedRouter>
             },
             {
-                path:'/Gifts',
+                path:'Gifts',
                 element:
                 <ProtectedRouter>
                 <Gifts/>
                 </ProtectedRouter>
             },
             {
-                path:'/Cart',
+                path:'Cart',
                 element:
                 <ProtectedRouter>
                 <Cart/>
                 </ProtectedRouter>
             },
             {
-                path:'/Terms',
+                path:'Cart/Checkout',
+                element:
+                <ProtectedRouter>
+                <Checkout/>
+                </ProtectedRouter>
+            },
+            {
+                path:'Terms',
                 element:
                 <ProtectedRouter>
                 <Terms/>
@@ -81,11 +89,11 @@ const router = createBrowserRouter ([
         element:<AuthLayout/>,
         children:[
             {
-                path:'/Register',
+                path:'Register',
                 element:<Register/>
             },
             {
-                path:'/Login',
+                path:'Login',
                 element:<Login/>
             }
         ]
