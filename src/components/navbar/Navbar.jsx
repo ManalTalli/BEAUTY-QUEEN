@@ -16,6 +16,8 @@ import useAuthStore from '../../store/useAuthStore';
 import useCart from '../../hooks/useCart';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18next';
+import useThemeStore from '../../store/useThemeStore';
+import { Button } from '@mui/material';
 
 export default function Navbar() {
   const langList = ['English', 'Arabic'];
@@ -25,6 +27,8 @@ export default function Navbar() {
   const cartCount = data?.items?.length || 0;
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const mode = useThemeStore ((state)=>state.mode);
+  const toggleTheme=useThemeStore ((state=>state.toggleTheme));
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   }
@@ -37,7 +41,7 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{
-        background: "white",
+        background: "",
         boxShadow: 'none'
       }} >
         <Toolbar display='flex' sx={{ justifyContent: 'space-between' }}>
@@ -68,13 +72,18 @@ export default function Navbar() {
             <Typography><DropDown title={t('Language')} items={langList} /></Typography>
             <button onClick={() => changeLanguage('ar')}>ar</button>
             <button onClick={() => changeLanguage('en')}>en</button>
+            <Button onClick={toggleTheme} color='inherit'>
+              {mode === 'light'?"dark":"light"}
+            </Button>
 
             {token ?
               (
                 <>
                   <Drawer1 drower='SEARCH' />
-                  <Link component={'button'} onClick={handleLogout} color="inherit" underline='none'>{t('Logout')}</Link>
-
+                  <Box display='flex' alignItems={'center'} justifyContent={'space-between'} gap={'10px'}>
+                    <Link component={routerLink} to={'/Profile'} color="primary" underline='none'>{t('Profile')}</Link>
+                    <Link component={'button'} onClick={handleLogout} color="inherit" underline='none'>{t('Logout')}</Link>
+                  </Box>
                   <Link component={routerLink} to={'/Cart'} color='#000' underline='none'><ShoppingBagOutlinedIcon />({cartCount})</Link>
                 </>
               ) :

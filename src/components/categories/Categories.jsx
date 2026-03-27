@@ -13,7 +13,7 @@ export default function Categories() {
     <Box width={'70%'}>
     <Grid container spacing={3}>
       {data.response.data.map (category=>
-      <Category category={category}/>
+      <Category category={category} key={category.id}/>
         )}      
       </Grid>
       </Box>

@@ -49,9 +49,11 @@ export default function Cart() {
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
+          
           <TableBody>
+            
             {data.items.map(item=>(
-              <TableRow>
+              <TableRow  key={item.productId}>
                 <TableCell>{item.productName}</TableCell>
                 <TableCell>{item.price}</TableCell>
                 <TableCell>
@@ -71,7 +73,7 @@ export default function Cart() {
             ))}
           </TableBody>
           <TableFooter>
-            <TableCell colSpan={5}>Total : {data.cartTotal}</TableCell>
+            <TableRow><TableCell colSpan={5}>Total : {data.cartTotal}</TableCell></TableRow>
           </TableFooter>
         </Table>
       </TableContainer>

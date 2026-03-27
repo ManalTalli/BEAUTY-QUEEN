@@ -13,7 +13,7 @@ export default function Products() {
 
         <Grid container gap={'30px'}>
           {data.response.data.map (product =>
-          <ProductsUI product={product}/>
+          <ProductsUI product={product} key={product.id}/>
             )}
           </Grid>
       

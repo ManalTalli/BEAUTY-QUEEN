@@ -5,7 +5,7 @@ import { Link as routerLink } from 'react-router-dom';
 export default function ProductsUI({product}) {
   return (
     <Grid  size={{xs:12,sm:6,md:4,lg:2.3}}>
-            <Link component={routerLink} to={`product/${product.id}`} sx={{textDecorationLine:'none'}} textDecorationLine='none'>
+            <Link component={routerLink} to={`product/${product.id}`} sx={{textDecorationLine:'none'}}>
             <Card >
               <CardMedia component={'img'} image={product.image}></CardMedia>
               <CardContent>

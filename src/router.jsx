@@ -13,6 +13,9 @@ import Terms from "./pages/terms/Terms";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import ProtectedRouter from "./ProtectedRouter";
 import Checkout from "./pages/checkout/Checkout";
+import Profile from "./pages/profile/Profile";
+import ProfileInfo from "./pages/profile/ProfileInfo";
+import ProfileOrders from "./pages/profile/ProfileOrders";
 
 
 const router = createBrowserRouter ([
@@ -74,6 +77,24 @@ const router = createBrowserRouter ([
                 <Checkout/>
                 </ProtectedRouter>
             },
+            {
+                path:'Profile',
+                element:
+                <ProtectedRouter>
+                <Profile/>
+                </ProtectedRouter>,
+                children:[
+                    {
+                        index:true,
+                        element:<ProfileInfo/>
+                    },
+                    {
+                        path:'Orders',
+                        element:<ProfileOrders/>
+                    }
+                ]
+            },
+            
             {
                 path:'Terms',
                 element:

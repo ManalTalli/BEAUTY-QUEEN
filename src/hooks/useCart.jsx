@@ -4,14 +4,13 @@ import i18n from '../i18next';
 import { useTranslation } from 'react-i18next';
 
 export default function useCart() {
-       const { i18n } = useTranslation();
     
     const getItems= async ()=>{
         const response =await authAxiosInstance.get(`/Carts`);
         return response.data;
     }
     const query = useQuery ({
-        queryKey: ['carts',i18n.language],
+        queryKey: ['carts','en'],
         queryFn: getItems,
         staleTime: 1000*60*5
     });

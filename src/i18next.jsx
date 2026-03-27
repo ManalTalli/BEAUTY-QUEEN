@@ -25,6 +25,7 @@ i18n
           "Login": "Login",
           "Register": "Register",
           "Delete":"Delete",
+          "Profile":"Profile",
       }
     },
     ar: {
@@ -39,6 +40,8 @@ i18n
         "Account": "الحساب",
         "Login": "دخول",
         "Delete":"حذف",
+                  "Profile":"الملف الشخصي ",
+
       }
     }
   },
