@@ -9,7 +9,7 @@ import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Registeration from '../registeration/Registeration';
 
-export default function Drawer1({ drower }) {
+export default function AccountDrower({ drower }) {
   const [state, setState] = React.useState({
 
   });

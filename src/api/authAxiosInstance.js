@@ -2,7 +2,6 @@ import axios from "axios";
 import useAuthStore from "../store/useAuthStore";
 import i18n from "../i18next";
 
-const token = localStorage.getItem("accessToken");
 const authAxiosInstance = axios.create({
     baseURL: 'https://knowledgeshop.runasp.net/api',
     withCredentials: true,
@@ -23,9 +22,10 @@ authAxiosInstance.interceptors.response.use((response) => response, async (error
             const refreshResponse = await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/RefreshToken', {}, {
                 withCredentials: true,
             });
-            const newAccessToken = refreshResponse.data.newAccessToken;
-            useAuthStore.getState().setToken(newAccessToken);
-            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
+            console.log("بيانات الريفريش:", refreshResponse.data);
+            const newToken = refreshResponse.data.accessToken;
+            useAuthStore.getState().setToken(newToken);
+            originalRequest.headers.Authorization = `Bearer ${newToken}`
             return authAxiosInstance(originalRequest);
         }
         catch (error) {

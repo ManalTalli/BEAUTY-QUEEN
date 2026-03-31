@@ -14,7 +14,7 @@ const [serverErrors,setServerErrors]=useState ([]);
   const { register, handleSubmit, formState: { errors , isSubmitting } } = useForm({ resolver: yupResolver(loginSchema), mode:'onBlur'});
     const loginForm = async (values)=>{
       try{
-        const response = await axios.post(`https://knowledgeshop.runasp.net/api/auth/Account/Login`,values);
+        const response = await axios.post(`https://knowledgeshop.runasp.net/api/auth/Account/Login`,values,{withCredentials: true,});
         if (response.status === 200){
           setToken(response.data.accessToken);
           navigate('/')

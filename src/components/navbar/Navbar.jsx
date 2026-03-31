@@ -10,14 +10,15 @@ import Link from '@mui/material/Link';
 import { Link as routerLink, useNavigate } from 'react-router-dom';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Logo from '../../assets/img/Logo.png'
-import Drawer1 from '../drower/Drower1';
-import Drawer2 from '../drower/Drower2';
+import SearchDrower from '../drower/SearchDrower';
+import AccountDrower from '../drower/AccountDrower';
 import useAuthStore from '../../store/useAuthStore';
 import useCart from '../../hooks/useCart';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18next';
 import useThemeStore from '../../store/useThemeStore';
 import { Button } from '@mui/material';
+import { useState } from 'react';
 
 export default function Navbar() {
   const langList = ['English', 'Arabic'];
@@ -79,7 +80,7 @@ export default function Navbar() {
             {token ?
               (
                 <>
-                  <Drawer1 drower='SEARCH' />
+                  <SearchDrower drower='SEARCH'/>
                   <Box display='flex' alignItems={'center'} justifyContent={'space-between'} gap={'10px'}>
                     <Link component={routerLink} to={'/Profile'} color="primary" underline='none'>{t('Profile')}</Link>
                     <Link component={'button'} onClick={handleLogout} color="inherit" underline='none'>{t('Logout')}</Link>
@@ -88,7 +89,8 @@ export default function Navbar() {
                 </>
               ) :
               (<>
-                <Drawer2 drower='ACCOUNT' />
+                <AccountDrower drower='ACCOUNT' />
+                
               </>)
             }
           </Box>
