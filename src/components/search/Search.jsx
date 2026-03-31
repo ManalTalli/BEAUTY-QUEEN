@@ -8,19 +8,19 @@ import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
 
 export default function Search() {
-  const query=useProducts ();
-    const products = query.data?.response.data;
-    console.log(products);
-    const {filterData , searchTerm , setSearchTerm} = useSearch (products);
+  const query = useProducts();
+  const products = query.data?.response.data;
+  console.log(products);
+  const { filterData, searchTerm, setSearchTerm } = useSearch(products);
   return (
     <Box>
-        <TextField value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
-        <List>
-        {searchTerm && filterData?.map((item)=>(
-          <Link component={routerLink} key={item.id} to={`shop/product/${item.id}`} sx={{textDecorationLine:'none'}}>{item.name}</Link>
-            )
-         )}
-        </List>
+      <TextField value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      <List>
+        {searchTerm && filterData?.map((item) => (
+          <Link component={routerLink} key={item.id} to={`shop/product/${item.id}`} sx={{ textDecorationLine: 'none' }}>{item.name}</Link>
+        )
+        )}
+      </List>
 
     </Box>
   )
