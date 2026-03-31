@@ -7,11 +7,12 @@ import UseFilter from '../../hooks/useFilter';
 
 export default function Products() {
   const {data , isLoading , isError , error} = useProducts ();
-  if (isLoading) return <Loader/>
-  if (isError) return <Box color={'red'}>{error.message}</Box>
   const query = useProducts();
       const products = query.data?.response.data;
       const {filterData} = UseFilter(products);
+  if (isLoading) return <Loader/>
+  if (isError) return <Box color={'red'}>{error.message}</Box>
+  
   return (
     <Box className='products' paddingTop={'50px'} width={'100%'}>
 
