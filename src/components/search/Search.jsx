@@ -17,7 +17,7 @@ export default function Search() {
       <TextField value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       <List>
         {searchTerm && filterData?.map((item) => (
-          <Link component={routerLink} key={item.id} to={`shop/product/${item.id}`} sx={{ textDecorationLine: 'none' }}>{item.name}</Link>
+          <List><Link component={routerLink} key={item.id} to={`shop/product/${item.id}`} sx={{ textDecorationLine: 'none' }}>{item.name}</Link></List>
         )
         )}
       </List>

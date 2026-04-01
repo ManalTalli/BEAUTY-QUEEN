@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useProductStore } from "../store/useProductStore.JS";
+import { useFilterStore } from "../store/useFilterStore.JS";
 
 
 export default function UseFilter (items){
-    const {value,updateValue}=useProductStore();
+    const {value,updateValue}=useFilterStore();
     const filterData = items?.filter (item=>{
         return (item.price>=value[0]&&item.price<=value[1])         
     })

@@ -1,7 +1,7 @@
 import React from 'react'
 import { create } from 'zustand'
 
-export const useProductStore=create((set)=>(
+export const useFilterStore=create((set)=>(
     {
         value:[0,2000],
         updateValue:(newValue)=>{
@@ -12,4 +12,5 @@ export const useProductStore=create((set)=>(
 
 
     }
+    
 )) 
