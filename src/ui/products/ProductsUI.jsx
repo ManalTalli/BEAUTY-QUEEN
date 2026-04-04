@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ export default function ProductsUI({product}) {
               <CardContent>
                 <Typography component={'h3'}>{product.name}</Typography>
                 <Typography component={'span'} variant='body1'>{product.price}$</Typography>
+                <Rating readOnly value={product.rate}></Rating>
               </CardContent>
             </Card>
             </Link>

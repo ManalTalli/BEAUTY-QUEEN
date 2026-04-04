@@ -4,12 +4,10 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
-import { Slider } from '@mui/material';
-import { useState } from 'react';
 import FilterSort from '../filtersort/FilterSort';
 
 
-export default function FilterDrower({ drower }) {
+export default function FilterDrower({ drower, onSelect, currentCat }) {
     const { t } = useTranslation();
     const [state, setState] = React.useState({
 
@@ -32,7 +30,7 @@ export default function FilterDrower({ drower }) {
             <Divider />
         </Box>
     );
-   
+
 
     return (
         <div>
@@ -44,11 +42,12 @@ export default function FilterDrower({ drower }) {
                         open={state[anchor]}
                         onClose={toggleDrawer(anchor, false)}
                     >
-                        <FilterSort />
+                        <FilterSort onSelect={onSelect} currentCat={currentCat} />
                         {list(anchor)}
                     </Drawer>
                 </React.Fragment>
             ))}
         </div>
+
     );
 }

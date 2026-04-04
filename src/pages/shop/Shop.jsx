@@ -1,20 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Categories from '../../components/categories/Categories'
 import Products from '../../components/products/Products'
 import FilterDrower from '../../components/drower/FilterDrower';
-import { useState } from 'react';
-import { Slider } from '@mui/material';
-
 
 export default function Shop() {
-  
+  const [currentCat, setCurrentCat] = useState("ALL");
+
   return (
     <div>
-      <Categories />
-      <FilterDrower drower='Filter' />
-      <Products />
-      
-
+      <Categories onSelect={setCurrentCat} />
+      <FilterDrower onSelect={setCurrentCat} currentCat={currentCat} drower='Filter' />
+      <Products currentCat={currentCat} />
     </div>
   )
 }

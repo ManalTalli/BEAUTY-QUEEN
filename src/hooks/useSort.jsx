@@ -9,7 +9,7 @@ export default function useSort(items){
     const sortedData = [...(filterData || [])].sort((x,y)=>{
         let result;
         if (sortedBy === 'name'){
-            result=x.name.localCompare(y.name);
+            result=x.name.localeCompare(y.name);
         }
         else{
             result=x[sortedBy]-y[sortedBy];
