@@ -6,6 +6,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import { loginSchema } from '../../../validation/LoginSchema';
 import useAuthStore from '../../../store/useAuthStore';
 import { useNavigate } from 'react-router-dom';
+import authAxiosInstance from '../../../api/authAxiosInstance';
 
 export default function Login() {
   const setToken = useAuthStore ( (state)=>state.setToken);
@@ -14,10 +15,11 @@ const [serverErrors,setServerErrors]=useState ([]);
   const { register, handleSubmit, formState: { errors , isSubmitting } } = useForm({ resolver: yupResolver(loginSchema), mode:'onBlur'});
     const loginForm = async (values)=>{
       try{
-        const response = await axios.post(`https://knowledgeshop.runasp.net/api/auth/Account/Login`,values,{withCredentials: true,});
+        const response = await authAxiosInstance.post(`/auth/Account/Login`,values,{withCredentials: true,});
         if (response.status === 200){
           setToken(response.data.accessToken);
-          navigate('/')
+          await authAxiosInstance.post(`/auth/Account/SendCode`,{email:values.email})
+          navigate('/Verify',{state:{email:values.email}});
         }
         console.log("response",response);
       }

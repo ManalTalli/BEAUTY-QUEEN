@@ -22,7 +22,6 @@ authAxiosInstance.interceptors.response.use((response) => response, async (error
             const refreshResponse = await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/RefreshToken', {}, {
                 withCredentials: true,
             });
-            console.log("بيانات الريفريش:", refreshResponse.data);
             const newToken = refreshResponse.data.accessToken;
             useAuthStore.getState().setToken(newToken);
             originalRequest.headers.Authorization = `Bearer ${newToken}`

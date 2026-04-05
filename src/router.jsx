@@ -16,6 +16,7 @@ import Checkout from "./pages/checkout/Checkout";
 import Profile from "./pages/profile/Profile";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileOrders from "./pages/profile/ProfileOrders";
+import Verify from "./pages/verify/Verify";
 
 
 const router = createBrowserRouter ([
@@ -116,6 +117,10 @@ const router = createBrowserRouter ([
             {
                 path:'Login',
                 element:<Login/>
+            },
+            {
+                path:'Verify',
+                element:<Verify/>
             }
         ]
     }
