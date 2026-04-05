@@ -14,7 +14,7 @@ export default function Verify() {
                 type="text" 
                 placeholder="Enter Code" 
                 value={code}
-                onChange={(e) => setCode(e.target.value)} // تحديث الكود عند الكتابة
+                onChange={(e) => setCode(e.target.value)} 
             />
             
             <button onClick={handleVerify} disabled={isLoading}>{isLoading ? 'جاري التحقق...' : 'تأكيد'}</button>

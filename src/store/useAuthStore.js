@@ -9,11 +9,14 @@ const useAuthStore = create ( (set)=>({
         });
         localStorage.setItem("accessToken",newToken);
     },
-    logout:()=>{
+    logout:(queryClient)=>{
         set({
             token:null
         });
         localStorage.removeItem("accessToken");
+        if (queryClient) {
+    queryClient.clear();
+  }
     }
 }));
 export default useAuthStore;

@@ -19,6 +19,7 @@ import i18n from '../../i18next';
 import useThemeStore from '../../store/useThemeStore';
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function Navbar() {
   const langList = ['English', 'Arabic'];
@@ -30,11 +31,12 @@ export default function Navbar() {
   const { t } = useTranslation();
   const mode = useThemeStore ((state)=>state.mode);
   const toggleTheme=useThemeStore ((state=>state.toggleTheme));
+  const queryClient = useQueryClient();
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   }
   const handleLogout = () => {
-    logout();
+    logout(queryClient);
     navigate('/');
   }
 
