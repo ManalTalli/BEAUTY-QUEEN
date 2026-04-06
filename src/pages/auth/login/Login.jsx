@@ -29,7 +29,7 @@ export default function Login() {
   }
   const handleForgotPassword = async (e) => {
     e.preventDefault();
-    const emailValue = getValues("email"); // إذا بتستخدمي react-hook-form
+    const emailValue = getValues("email"); 
 
     if (!emailValue) {
       alert("Please enter your email address first.");
@@ -37,10 +37,9 @@ export default function Login() {
     }
 
     try {
-      // نرسل الكود للإيميل المكتوب
       await authAxiosInstance.post('/auth/Account/SendCode', { email: emailValue });
 
-      // ننتقل لصفحة الريست ونمرر الإيميل بالـ state
+    
       navigate('/ResendPassword', { state: { email: emailValue } });
     } catch (error) {
       alert("Error sending code. Please try again.");

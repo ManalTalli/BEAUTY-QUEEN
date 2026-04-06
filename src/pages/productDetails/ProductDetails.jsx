@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../ui/Loader';
 import { Box, Button, Card, CardMedia, Rating, Typography } from '@mui/material';
 import useAddToCart from '../../hooks/useAddToCart';
+import Reviews from '../../components/reviews/Reviews';
 
 export default function ProductDetails() {
     const {id}=useParams();
@@ -30,7 +31,21 @@ export default function ProductDetails() {
             Count:1,
           })}>Add To Cart</Button>
         </Box>
+        
       </Card>
+      <Reviews />
+      <Box>
+          {product?.reviews.map(prod=>
+          <Box paddingTop={'20px'}>
+            <Box display={'flex'}>
+            <Typography>{prod.userName}</Typography>
+            <Rating readOnly value={prod.rating}></Rating>
+            </Box>
+            <Typography>{prod.comment}</Typography>
+            <Typography>{prod.createdAt}</Typography>
+            </Box>
+          )}
+        </Box>
       </Box>
   )
 }

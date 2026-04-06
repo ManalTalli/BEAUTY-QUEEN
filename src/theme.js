@@ -6,7 +6,10 @@ const getTheme = (mode)=>{
         palette:{
             mode:mode,
         primary:{
-            main:'#FF0000'
+            main:'#4308e7',
+            contrastText:'#000000',
+            dark:'#438552',
+            light:'#5bdcdc'
         }
     }
     });

@@ -10,7 +10,9 @@ export default function useProducts(id){
     const getProducts = async ()=>{
         const response = await axiosInstance.get(`/Products/${id}`);
         return response.data;
+        console.log(response.data)
     }
+    
     const query= useQuery({
         queryKey:['product',i18n.language,id],
         queryFn:getProducts,

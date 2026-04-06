@@ -15,20 +15,18 @@ authAxiosInstance.interceptors.request.use((config) => {
 })
 authAxiosInstance.interceptors.response.use((response) => response, async (error) => {
     const originalRequest = error.config;
-    console.log(originalRequest);
-    if (error.response?.status === 401 && !originalRequest._rety) {
-        originalRequest._rety = true;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
         try {
             const refreshResponse = await axios.post('https://knowledgeshop.runasp.net/api/auth/Account/RefreshToken', {}, {
                 withCredentials: true,
             });
             const newToken = refreshResponse.data.accessToken;
             useAuthStore.getState().setToken(newToken);
-            originalRequest.headers.Authorization = `Bearer ${newToken}`
-            return authAxiosInstance(originalRequest);
+            originalRequest.headers["Authorization"] = `Bearer ${newToken}`
+            return axios(originalRequest);
         }
         catch (error) {
-            console.log("error");
             return Promise.reject(error);
         }
     }

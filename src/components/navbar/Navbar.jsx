@@ -42,9 +42,9 @@ export default function Navbar() {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
       <AppBar position="static" sx={{
-        background: "",
+        backgroundColor:'primary.main',
         boxShadow: 'none'
       }} >
         <Toolbar display='flex' sx={{ justifyContent: 'space-between' }}>
@@ -84,7 +84,7 @@ export default function Navbar() {
                 <>
                   <SearchDrower drower='SEARCH'/>
                   <Box display='flex' alignItems={'center'} justifyContent={'space-between'} gap={'10px'}>
-                    <Link component={routerLink} to={'/Profile'} color="primary" underline='none'>{t('Profile')}</Link>
+                    <Link component={routerLink} to={'/Profile'} sx={{color:'primary.contrastText'}} underline='none'>{t('Profile')}</Link>
                     <Link component={'button'} onClick={handleLogout} color="inherit" underline='none'>{t('Logout')}</Link>
                   </Box>
                   <Link component={routerLink} to={'/Cart'} color='#000' underline='none'><ShoppingBagOutlinedIcon />({cartCount})</Link>
