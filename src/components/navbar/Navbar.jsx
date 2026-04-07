@@ -22,6 +22,8 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import lightLogo from './assets/img/Logo.png';
+import darkLogo from './assets/img/LOGODARK.png';
 
 export default function Navbar() {
   const token = useAuthStore((state) => state.token);
@@ -36,6 +38,7 @@ export default function Navbar() {
   const queryClient = useQueryClient();
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  
   const handleLanguage = (lng) => {
     setLanguage(lng);
     i18n.changeLanguage(lng);
@@ -44,9 +47,7 @@ export default function Navbar() {
     logout(queryClient);
     navigate('/');
   }
-  const logoSrc = isDarkMode
-    ? './src/assets/img/LOGODARk.png' 
-    : './src/assets/img/Logo.png';
+  const logoSrc = isDarkMode ? darkLogo : lightLogo;
 
 
   return (
