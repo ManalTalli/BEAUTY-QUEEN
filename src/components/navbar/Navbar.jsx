@@ -17,34 +17,42 @@ import useCart from '../../hooks/useCart';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18next';
 import useThemeStore from '../../store/useThemeStore';
-import { Button } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, Switch, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export default function Navbar() {
-  const langList = ['English', 'Arabic'];
   const token = useAuthStore((state) => state.token);
+  const [Language, setLanguage] = useState('en');
   const logout = useAuthStore((state) => state.logout);
   const { data } = useCart();
   const cartCount = data?.items?.length || 0;
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const mode = useThemeStore ((state)=>state.mode);
-  const toggleTheme=useThemeStore ((state=>state.toggleTheme));
+  const mode = useThemeStore((state) => state.mode);
+  const toggleTheme = useThemeStore((state => state.toggleTheme));
   const queryClient = useQueryClient();
-  const changeLanguage = (lng) => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+  const handleLanguage = (lng) => {
+    setLanguage(lng);
     i18n.changeLanguage(lng);
   }
   const handleLogout = () => {
     logout(queryClient);
     navigate('/');
   }
+  const logoSrc = isDarkMode
+    ? 'src/assets/img/LOGODARk.png'  // صورة اللوجو للدارك مود (مثلاً فاتحة)
+    : 'src/assets/img/Logo.png';
 
 
   return (
-    <Box sx={{ flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1, textTransform: 'uppercase' }} >
       <AppBar position="static" sx={{
-        backgroundColor:'primary.main',
+        backgroundColor: 'primary',
         boxShadow: 'none'
       }} >
         <Toolbar display='flex' sx={{ justifyContent: 'space-between' }}>
@@ -59,42 +67,99 @@ export default function Navbar() {
           {token ?
             (
               <>
-                <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '24px', textTransform: 'uppercase' }}>
-                  <Link component={routerLink} to={'/Shop'} color='black' underline='none'>{t('Shop')}</Link>
-                  <Link component={routerLink} to={'/NewArrivals'} color='black' underline='none'>{t('New Arrivals')}</Link>
-                  <Link component={routerLink} to={'/Bestsellers'} color='black' underline='none'>{t('Bestsellers')}</Link>
-                  <Link component={routerLink} to={'/Gifts'} color='black' underline='none'>{t('Gifts')}</Link>
+                <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '24px' }}>
+                  <Link component={routerLink} to={'/Shop'} variant='h5' color="text.primary" underline='none'>{t('Shop')}</Link>
+                  <Link component={routerLink} to={'/NewArrivals'} variant='h5' color="text.primary" underline='none'>{t('New Arrivals')}</Link>
+                  <Link component={routerLink} to={'/Bestsellers'} variant='h5' color="text.primary" underline='none'>{t('Bestsellers')}</Link>
+                  <Link component={routerLink} to={'/Gifts'} variant='h5' color="text.primary" underline='none'>{t('Gifts')}</Link>
                 </Box>
               </>
             ) :
             (<></>)
           }
-          <Link component={routerLink} to={'/'} ><img src={Logo} alt="" /></Link>
+          <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+          
 
           <Box color='black' display='flex' gap='24px'>
-            <Typography><DropDown title={t('Language')} items={langList} /></Typography>
-            <button onClick={() => changeLanguage('ar')}>ar</button>
-            <button onClick={() => changeLanguage('en')}>en</button>
-            <Button onClick={toggleTheme} color='inherit'>
-              {mode === 'light'?"dark":"light"}
-            </Button>
+            {token ? (<>
+            <SearchDrower drower={t('Search')} />
+            <FormControl variant="standard" sx={{ m: 1 }}>
+                    <Select
+                      value=""
+                      displayEmpty
+                      disableUnderline
+                      renderValue={() => (
+                        <Typography variant="h5" sx={{ color: 'text.primary', cursor: 'pointer' }}>
+                          {t('Account')}
+                        </Typography>
+                      )}
+                      sx={{
+                        '& .MuiSelect-select': {
+                          paddingTop: '0px !important',
+                          paddingBottom: '0px !important',
+                          display: 'flex',
+                          alignItems: 'center',
+                        },
+                        '& .MuiSvgIcon-root': {
+                          color: 'text.primary',
+                        }
+                      }}
+                    >
+                      <MenuItem component={routerLink} to="/Profile">
+                        <Typography variant="h5">{t('Profile')}</Typography>
+                      </MenuItem>
 
+
+                      <MenuItem onClick={handleLogout}>
+                        <Typography variant="h5">{t('Logout')}</Typography>
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+
+          </>)
+            : (<></>)}
+            <FormControl variant='standard' sx={{ m: 1 }}>
+              <Select
+                disableUnderline
+                sx={{
+                  '& .MuiSelect-select': {
+                    paddingTop: '0px !important',
+                    paddingBottom: '0px !important',
+                    display: 'flex',
+                    alignItems: 'center',
+                  },
+                  '& .MuiSvgIcon-root': {
+                    color: 'text.primary',
+                  }
+                }}
+                labelId="Language-label"
+                id="Language"
+                value={Language}
+                onChange={(e) => handleLanguage(e.target.value)}
+                renderValue={() => (
+                  <Typography variant='h5'>{t('Language')}</Typography>)}
+              >
+                <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
+                <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
+              </Select>
+            </FormControl>
             {token ?
               (
                 <>
-                  <SearchDrower drower='SEARCH'/>
-                  <Box display='flex' alignItems={'center'} justifyContent={'space-between'} gap={'10px'}>
-                    <Link component={routerLink} to={'/Profile'} sx={{color:'primary.contrastText'}} underline='none'>{t('Profile')}</Link>
-                    <Link component={'button'} onClick={handleLogout} color="inherit" underline='none'>{t('Logout')}</Link>
-                  </Box>
-                  <Link component={routerLink} to={'/Cart'} color='#000' underline='none'><ShoppingBagOutlinedIcon />({cartCount})</Link>
+                  
+
+                  <Link component={routerLink} to={'/Cart'} color="text.primary" underline='none' sx={{ m: 1 }}><ShoppingBagOutlinedIcon />({cartCount})</Link>
                 </>
               ) :
               (<>
-                <AccountDrower drower='ACCOUNT' />
-                
+                <AccountDrower drower={t('Account')} />
+
               </>)
             }
+
+            <Button onClick={toggleTheme} color='inherit'>
+              {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon sx={{ color: "text.primary" }} />}
+            </Button>
           </Box>
 
 

@@ -8,8 +8,12 @@ import { Link as routerLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Registeration from '../registeration/Registeration';
+import { useTranslation } from 'react-i18next';
+import LineHover from '../lineHover/LineHover';
 
 export default function AccountDrower({ drower }) {
+  const { t } = useTranslation();
+
   const [state, setState] = React.useState({
 
   });
@@ -35,72 +39,27 @@ export default function AccountDrower({ drower }) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} color='black'>{drower}</Button>
+          <Button onClick={toggleDrawer(anchor, true)} ><Typography variant='h5' sx={{ m: 1 }} color='text.primary'>{drower}</Typography></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}>
+            onClose={toggleDrawer(anchor, false)}
+            color='primary'
+          >
 
             <Box display='flex' padding='24px' alignItems='center' justifyContent='space-between'>
-              <Typography component='h3' fontSize='14px' fontWeight='700' lineHeight='16.8px'>ACCOUNT</Typography>
+              <Typography component='h3' variant='h2'>{t("ACCOUNT")}</Typography>
               <CloseIcon style={{ cursor: 'pointer' }}
                 onClick={toggleDrawer(anchor, false)} /></Box>
             <Box borderBottom='none' paddingLeft='24px' paddingRight='24px'>
-              <Typography component='h3' fontSize='14px' fontWeight='700' lineHeight='16.8px' marginTop='12px' marginBottom='8px'>WELCOME TO BEAUTY QUEEN</Typography>
-              <Typography marginBottom='16px' fontSize='11px' fontWeight='400' lineHeight='14.3px' color='rgb(26, 26, 26)'>REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,<br /> AND MANAGE YOUR ORDERS AND RETURNS.</Typography>
-              <Registeration text='LOG IN'/>
-                <Box display='flex' flexDirection='column' alignItems='center' paddingTop='10px' >
-                  <Link
-                    component={routerLink}
-                    to="/Register" lineHeight='14.391px' textAlign='center' 
-                    sx={{
-                      color: 'rgb(26, 26, 26)',
-                      textDecoration: 'none',
-                      position: 'relative',
-                      display: 'inline-block',
-                      paddingBottom: '5px',
-                      fontSize: '11.5px',
-                      fontWeight: '400',
-                      overflow: 'hidden',
-
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        bottom: 0,
-                        height: '2px',
-                        backgroundColor: 'black',
-                        width: '102px',
-                        left: 0,
-                        transition: 'transform 0.6s ease, left 0.6s ease',
-                      },
-
-                      '&:hover::after': {
-                        animation: 'cycleRight 0.8s ease-in-out forwards',
-                      },
-
-                      '&:not(:hover)::after': {
-                        animation: 'cycleLeft 0.8s ease-in-out forwards',
-                      },
-
-                      '@keyframes cycleRight': {
-                        '0%': { transform: 'translateX(0)' },
-                        '49%': { transform: 'translateX(100%)' },
-                        '50%': { transform: 'translateX(-100%)' },
-                        '100%': { transform: 'translateX(0)' },
-                      },
-
-                      '@keyframes cycleLeft': {
-                        '0%': { transform: 'translateX(0)' },
-                        '49%': { transform: 'translateX(-100%)' },
-                        '50%': { transform: 'translateX(100%)' },
-                        '100%': { transform: 'translateX(0)' },
-                      },
-                    }}
-                  >
-                    CREATE ACCOUNT
-                  </Link>
-                </Box>
-
+              <Typography component='h3' variant='h2' color='text.primary' marginTop='12px' marginBottom='8px'>{t("WELCOME TO BEAUTY QUEEN")}</Typography>
+              <Typography marginBottom='16px' color='text.primary' variant='h5'>{t("REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,")}<br /> {t("AND MANAGE YOUR ORDERS AND RETURNS.")}</Typography>
+              <Box width='15%' marginTop='20px' component={routerLink} to="/Login" sx={{textDecorationLine:'none'}}>
+              <Registeration text={t('LOG IN')} />
+              </Box>
+              <Box component={routerLink} to={'/Register'} sx={{textDecorationLine:'none'}}>
+                <LineHover text={'CREATE ACCOUNT'} />
+              </Box>
             </Box>
 
             {list(anchor)}

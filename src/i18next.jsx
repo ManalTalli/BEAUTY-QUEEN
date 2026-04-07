@@ -5,7 +5,7 @@ import { useTranslation, initReactI18next } from "react-i18next";
 import detector from "i18next-browser-languagedetector";
 
 i18n
-.use(detector)
+  .use(detector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     // the translations
@@ -24,28 +24,44 @@ i18n
           "Account": "Account",
           "Login": "Login",
           "Register": "Register",
-          "Delete":"Delete",
-          "Profile":"Profile",
+          "Delete": "Delete",
+          "Profile": "Profile",
+          "Arabic": "Arabic",
+          "English":"English",
+          "ACCOUNT":"ACCOUNT",
+          "WELCOME TO BEAUTY QUEEN":"WELCOME TO BEAUTY QUEEN",
+          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,":"REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,",
+          "AND MANAGE YOUR ORDERS AND RETURNS.":"AND MANAGE YOUR ORDERS AND RETURNS.",
+          "LOG IN":"LOG IN",
+          "CREATE ACCOUNT":"CREATE ACCOUNT",
+        }
+      },
+      ar: {
+        translation: {
+          "Shop": "متجر",
+          "New Arrivals": "وصل حديثاً",
+          "Bestsellers": "الأكثر مبيعاً",
+          "Gifts": "هدايا",
+          "Language": "اللغة",
+          "Search": "بحث",
+          "Logout": "خروج",
+          "Account": "الحساب",
+          "Login": "دخول",
+          "Delete": "حذف",
+          "Profile": "الملف الشخصي ",
+          "Arabic":"عربي",
+          "English":"انجليزي",
+          "ACCOUNT":"الحساب",
+          "WELCOME TO BEAUTY QUEEN":"أهلاً بكم في بيوتي كوين",
+          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,":"سجل في بيوتي كوين لحفظ عناوين التوصيل الخاصة بك،",
+          "AND MANAGE YOUR ORDERS AND RETURNS.":"وإدارة طلباتك وعمليات الإرجاع.",
+          "LOG IN":"دخول",
+          "CREATE ACCOUNT":"انشاء حساب",
+
+        }
       }
     },
-    ar: {
-      translation: {
-        "Shop": "متجر",
-        "New Arrivals": "وصل حديثاً",
-        "Bestsellers": "الأكثر مبيعاً",
-        "Gifts": "هدايا",
-        "Language": "اللغة",
-        "Search": "بحث",
-        "Logout": "خروج",
-        "Account": "الحساب",
-        "Login": "دخول",
-        "Delete":"حذف",
-                  "Profile":"الملف الشخصي ",
-
-      }
-    }
-  },
     lng: "", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
   });
-  export default i18n;
+export default i18n;

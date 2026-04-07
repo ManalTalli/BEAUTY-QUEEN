@@ -6,6 +6,7 @@ export default function useResendPassword() {
    const Location = useLocation();
     const navigate = useNavigate();
     const email = Location.state?.email;
+    const [serverErrors,setServerErrors]=useState();
 
     const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -19,13 +20,13 @@ export default function useResendPassword() {
                 navigate('/');
             }
         }
-        catch {
-            setServerErrors([error.response.data.message]);
+        catch (error){
+            setServerErrors([error.response?.data?.message]);
         }
         finally {
             setLoading(false);
         }
     }
-    return {handleResendPassword,email,code,setCode,isLoading,newPassword, setNewPassword}
+    return {handleResendPassword,email,code,setCode,isLoading,newPassword, setNewPassword,serverErrors}
 
 }

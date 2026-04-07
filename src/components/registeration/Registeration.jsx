@@ -8,20 +8,21 @@ export default function Registeration({ text }) {
         <div>
             <Box display='flex' flexDirection='column'>
                 <Link
-                    component={routerLink}
-                    to="/Login" fontSize='11.07px' fontWeight='400' lineHeight='14.391px' padding='10px'
+                    
+                     variant='h4' padding='10px'
                     sx={{
                         display: 'block',
                         textAlign: 'center',
                         padding: '10px',
-                        backgroundColor: '#ffffff',
-                        color: 'rgb(26, 26, 26)',
+                        backgroundColor: 'contrastText.primary',
+                        color: 'text.primary',
                         textDecoration: 'none',
                         position: 'relative',
                         overflow: 'hidden',
                         zIndex: 1,
                         transition: 'color 0.4s ease',
-                        border: '1px solid black',
+                        border: '1px solid',
+                        borderColor:' text.primary',
 
 
                         '&::before': {

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Search from '../search/Search';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Typography } from '@mui/material';
 
 export default function SearchDrower({drower}) {
     const {t} = useTranslation ();
@@ -42,7 +43,7 @@ export default function SearchDrower({drower}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} color='black'>{drower}</Button>
+          <Button onClick={toggleDrawer(anchor, true)} ><Typography color="text.primary" variant='h5' paddingTop={'5px'}>{drower}</Typography></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
