@@ -22,8 +22,8 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import lightLogo from './assets/img/Logo.png';
-import darkLogo from './assets/img/LOGODARK.png';
+import lightLogo from '../../assets/img/Logo.png';
+import darkLogo from '../../assets/img/LOGODARk.png';
 
 export default function Navbar() {
   const token = useAuthStore((state) => state.token);
