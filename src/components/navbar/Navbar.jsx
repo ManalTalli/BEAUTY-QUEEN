@@ -45,8 +45,8 @@ export default function Navbar() {
     navigate('/');
   }
   const logoSrc = isDarkMode
-    ? 'src/assets/img/LOGODARk.png'  // صورة اللوجو للدارك مود (مثلاً فاتحة)
-    : 'src/assets/img/Logo.png';
+    ? './src/assets/img/LOGODARk.png' 
+    : './src/assets/img/Logo.png';
 
 
   return (
