@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Slider, TextField } from '@mui/material'
+import { Box, Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, Slider, TextField } from '@mui/material'
 import { useSortStore } from '../../store/useSortStore';
 import useCategories from '../../hooks/useCategories';
 import { useFilterStore } from '../../store/useFilterStore.JS';
@@ -7,7 +7,7 @@ export default function FilterSort({ onSelect, currentCat }) {
     const { data, isLoading, isError, error } = useCategories();
     const { value, updateValue } = useFilterStore();
     const { sortedBy, sortedOrder, setSortedBy, setSortedOrder } = useSortStore();
-    if (isLoading) return <Loader />
+    if (isLoading) return <CircularProgress />
     if (isError) return <Box color={'red'}>{error.message}</Box>
     const handleChangeFilter = (event, newValue) => {
         updateValue(newValue);
