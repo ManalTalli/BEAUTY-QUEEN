@@ -24,7 +24,7 @@ authAxiosInstance.interceptors.response.use((response) => response, async (error
             const newToken = refreshResponse.data.accessToken;
             useAuthStore.getState().setToken(newToken);
             originalRequest.headers["Authorization"] = `Bearer ${newToken}`
-            return axios(originalRequest);
+            return authAxiosInstance(originalRequest);
         }
         catch (error) {
             return Promise.reject(error);
