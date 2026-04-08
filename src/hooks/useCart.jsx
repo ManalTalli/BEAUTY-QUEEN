@@ -11,9 +11,10 @@ export default function useCart() {
         return response.data;
     }
     const query = useQuery ({
-        queryKey: ['carts','en'],
+        queryKey: ['carts'],
         queryFn: getItems,
         enabled: !!token,
+        retry: false,
     });
     return query;
 }
