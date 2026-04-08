@@ -1,45 +1,37 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import DropDown from '../dropdown/DropDown';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
-import { Link as routerLink, useNavigate } from 'react-router-dom';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import Logo from '../../assets/img/Logo.png'
-import SearchDrower from '../drower/SearchDrower';
-import AccountDrower from '../drower/AccountDrower';
-import useAuthStore from '../../store/useAuthStore';
-import useCart from '../../hooks/useCart';
+import { Link as routerLink } from 'react-router-dom';
+import { FormControl, IconButton, MenuItem, Select, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Registeration from '../registeration/Registeration';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../i18next';
-import useThemeStore from '../../store/useThemeStore';
-import { Button, FormControl, InputLabel, MenuItem, Select, Switch, useTheme } from '@mui/material';
+import LineHover from '../lineHover/LineHover';
+import MenuIcon from '@mui/icons-material/Menu';
+import useAuthStore from '../../store/useAuthStore';
+import SearchDrower from './SearchDrower';
+import AccountDrower from './AccountDrower';
 import { useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import useCart from '../../hooks/useCart';
+import useThemeStore from '../../store/useThemeStore';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import lightLogo from '../../assets/img/Logo.png';
-import darkLogo from '../../assets/img/LOGODARk.png';
-import NavDrower from '../drower/NavDrower';
 
-export default function Navbar() {
-  const token = useAuthStore((state) => state.token);
-  const [Language, setLanguage] = useState('en');
-  const logout = useAuthStore((state) => state.logout);
+export default function NavDrower() {
+      const [Language, setLanguage] = useState('en');
   const { data } = useCart();
-  const cartCount = data?.items?.length || 0;
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-  const mode = useThemeStore((state) => state.mode);
+      const cartCount = data?.items?.length || 0;
+        const mode = useThemeStore((state) => state.mode);
+      
   const toggleTheme = useThemeStore((state => state.toggleTheme));
-  const queryClient = useQueryClient();
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
 
-  const handleLanguage = (lng) => {
+  const { t } = useTranslation();
+  const token = useAuthStore((state) => state.token);
+const handleLanguage = (lng) => {
     setLanguage(lng);
     i18n.changeLanguage(lng);
   }
@@ -47,24 +39,58 @@ export default function Navbar() {
     logout(queryClient);
     navigate('/');
   }
-  const logoSrc = isDarkMode ? darkLogo : lightLogo;
+  const [state, setState] = React.useState({
 
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+ const list = (anchor) => (
+  <Box
+    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 440 }}
+    role="presentation"
+  >
+    <Box sx={{ display: 'flex', justifyContent: 'flex-start'}}>
+      <IconButton onClick={toggleDrawer(anchor, false)}>
+        <CloseIcon />
+      </IconButton>
+    </Box>
+
+  
+  </Box>
+);
 
   return (
-    <Box sx={{ flexGrow: 1, textTransform: 'uppercase' }} >
-      <AppBar position="static" sx={{
-        backgroundColor: 'primary',
-        boxShadow: 'none'
-      }} >
-
-        <Toolbar display='flex' sx={{ justifyContent: 'space-between' }}>
-          <Box  sx={{ mr: 2, display: { md: 'none' } }}>
-          <NavDrower />
-          </Box>
-          {token ?
+    <div>
+      {['left'].map((anchor) => (
+        <React.Fragment key={anchor} >
+          <Button onClick={toggleDrawer(anchor, true)}><Typography variant='h5' sx={{ marginTop: 1 }} color='text.primary'><IconButton
+            size="large"
+            edge="start"
+            color="text.primary"
+            aria-label="menu"
+          >
+            <MenuIcon />
+            
+          </IconButton></Typography></Button>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+            color='primary'
+             sx={{ mr: 2, display: { md: 'none' } }}
+          >
+            {list(anchor)}
+            {token ?
             (
               <>
-                <Box sx={{ display: { xs:'none',sm: 'none', md: 'flex' }, gap: '20px' }}>
+                <Box display={'flex'} flexDirection={'column'} sx={{ display: { xs:'flex',sm: 'flex', md: 'none' }, gap: '20px' }}>
                   <Link component={routerLink} to={'/Shop'} variant='h5' color="text.primary" underline='none'>{t('Shop')}</Link>
                   <Link component={routerLink} to={'/NewArrivals'} variant='h5' color="text.primary" underline='none'>{t('New Arrivals')}</Link>
                   <Link component={routerLink} to={'/Bestsellers'} variant='h5' color="text.primary" underline='none'>{t('Bestsellers')}</Link>
@@ -74,13 +100,12 @@ export default function Navbar() {
             ) :
             (<></>)
           }
-          <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+          
 
 
-          <Box color='black' display='flex' gap='20px' sx={{ display: { xs: 'none', sm: 'flex' } }}>
+          <Box color='black' display='flex' flexDirection={'column'} gap='20px' paddingTop={'20px'} sx={{ display: { xs: 'flex', sm: 'none' } }}>
             {token ? (<>
-            <Box sx={{paddingTop:'7px'}}>
-              <SearchDrower drower={t('Search')} /></Box>
+              <SearchDrower drower={t('Search')} />
               <FormControl variant="standard" sx={{ marginTop: 1 }}>
                 <Select
                   value=""
@@ -155,19 +180,16 @@ export default function Navbar() {
               </>)
             }
 
-            <Button onClick={toggleTheme} color='inherit'>
+            <Button onClick={toggleTheme} color='inherit' sx={{display:'flex',justifyContent:'flex-start'}}>
               {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px" }} />}
             </Button>
           </Box>
 
 
-
-        </Toolbar>
-      </AppBar>
-
-    </Box >
-
-
-
+          </Drawer>
+         
+        </React.Fragment>
+      ))}
+    </div>
   );
 }

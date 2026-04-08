@@ -43,6 +43,14 @@ const getTheme = (mode) => {
 
 
         },
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 750,    
+                md: 960,    
+ 
+            },
+        },
     });
 
 }
