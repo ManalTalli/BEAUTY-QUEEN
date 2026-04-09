@@ -1,7 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import authAxiosInstance from '../api/authAxiosInstance';
+import { useTranslation } from 'react-i18next';
 
 export default function useCheckout() {
+  const { i18n } = useTranslation();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (paymentMethod) => {
@@ -11,9 +13,9 @@ export default function useCheckout() {
       if (response.data.url) {
         location.href = response.data.url;
       }
-      queryClient.invalidateQueries({ queryKey: ['carts'] });
-      queryClient.invalidateQueries({ queryKey: ['orders'] });
-      queryClient.invalidateQueries({ queryKey: ['profile'] });
+      queryClient.invalidateQueries({ queryKey: ['carts',i18n.language]});
+      queryClient.invalidateQueries({ queryKey: ['orders',i18n.language] });
+      queryClient.invalidateQueries({ queryKey: ['profile',i18n.language] });
     }
   })
 }

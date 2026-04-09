@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import authAxiosInstance from '../api/authAxiosInstance';
 import { Rating } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const useAddReview = (productId) => {
+  const { i18n } = useTranslation();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -11,7 +13,7 @@ export const useAddReview = (productId) => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey:['reviews']});
+      queryClient.invalidateQueries({queryKey:['reviews',i18n.language]});
     },
   });
 };

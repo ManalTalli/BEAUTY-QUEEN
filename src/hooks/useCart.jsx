@@ -5,13 +5,14 @@ import { useTranslation } from 'react-i18next';
 import useAuthStore from '../store/useAuthStore';
 
 export default function useCart() {
+    const { i18n } = useTranslation();
     const token = useAuthStore((state) => state.token);
     const getItems= async ()=>{
         const response =await authAxiosInstance.get(`/Carts`);
         return response.data;
     }
     const query = useQuery ({
-        queryKey: ['carts'],
+        queryKey: ['carts',i18n.language],
         queryFn: getItems,
         enabled: !!token,
         retry: false,

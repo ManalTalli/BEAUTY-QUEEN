@@ -23,10 +23,11 @@ authAxiosInstance.interceptors.response.use((response) => response, async (error
             });
             const newToken = refreshResponse.data.accessToken;
             useAuthStore.getState().setToken(newToken);
-            originalRequest.headers["Authorization"] = `Bearer ${newToken}`
+            originalRequest.headers.Authorization = `Bearer ${newToken}`
             return authAxiosInstance(originalRequest);
         }
         catch (error) {
+            window.location.href = '/login';
             return Promise.reject(error);
         }
     }

@@ -43,7 +43,7 @@ export default function NavDrower() {
   };
 
   const handleLogout = () => {
-    logout(); 
+    logout(queryClient); 
     navigate('/');
   };
 
