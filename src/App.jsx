@@ -9,7 +9,7 @@ import { CssBaseline } from '@mui/material'
 import useThemeStore from './store/useThemeStore.js'
 import getTheme from './theme.js'
 
-
+const queryClient = new QueryClient()
 export default function App() {
   const {i18n} = useTranslation();
   useEffect (()=>{
@@ -17,7 +17,7 @@ export default function App() {
     document.documentElement.dir=dir;
   },[i18n.language])
   const mode = useThemeStore((state)=>state.mode);
-  const queryClient = new QueryClient()
+  
 
   return(
     <QueryClientProvider client = { queryClient } >
