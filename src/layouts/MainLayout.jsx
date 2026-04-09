@@ -8,11 +8,10 @@ import { Container } from '@mui/material'
 export default function MainLayout() {
   return (
     <div>
-      <Container disableGutters sx={{px:3}} maxWidth={false} >
+      
         <Navbar />
         <Outlet />
         <Footer />
-        </Container>
       
     </div>
   )

@@ -12,8 +12,9 @@ const Footer = () => {
         py: 2, // Padding vertical (مسافة صغيرة فوق وتحت)
         px: 2,
         mt: 'auto',
-        backgroundColor: '#111',
-        borderTop: '1px solid #e0e0e0',
+        backgroundColor: 'primary',
+        borderTop: '1px solid',
+        borderTopColor:'text.primary'
       }}
     >
       <Container maxWidth="lg">
@@ -27,15 +28,15 @@ const Footer = () => {
             flexDirection: { xs: 'column', sm: 'row' }, // في الموبايل تحت بعض، في الشاشة الكبيرة جنب بعض
           }}
         >
-          <Typography variant="body2" color="#fff">
+          <Typography variant="body2" color="text.primary">
             © {new Date().getFullYear()} YourBrand. All rights reserved.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link href="#" underline="hover" color="#fff" sx={{ fontSize: '0.875rem' }}>
+            <Link href="#" underline="hover" color="text.primary" sx={{ fontSize: '0.875rem' }}>
               Privacy Policy
             </Link>
-            <Link href="#" underline="hover" color="#fff" sx={{ fontSize: '0.875rem' }}>
+            <Link href="#" underline="hover" color="text.primary" sx={{ fontSize: '0.875rem' }}>
               Terms of Service
             </Link>
           </Box>

@@ -2,7 +2,7 @@ import React from 'react'
 import useProduct from '../../hooks/useProduct'
 import { useParams } from 'react-router-dom';
 import Loader from '../../ui/Loader';
-import { Box, Button, Card, CardMedia, Rating, Typography } from '@mui/material';
+import { Box, Button, Card, CardMedia, Container, Rating, Typography } from '@mui/material';
 import useAddToCart from '../../hooks/useAddToCart';
 import Reviews from '../../components/reviews/Reviews';
 
@@ -16,7 +16,7 @@ export default function ProductDetails() {
     const product=data.response;
     
   return (
-    <Box>
+    <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
       <Card sx={{display:'flex',padding:'30px',flexWrap:'wrap',gap:4}}>
         <CardMedia component={'img'} image={product.image} sx={{width:{xs:'100%',md:300, objectFit:'contain'}}}>
         </CardMedia>
@@ -45,7 +45,6 @@ export default function ProductDetails() {
             <Typography>{prod.createdAt}</Typography>
             </Box>
           )}
-        </Box>
-      </Box>
+      </Box></Container>
   )
 }

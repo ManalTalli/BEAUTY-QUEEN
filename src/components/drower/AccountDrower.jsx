@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Container, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Registeration from '../registeration/Registeration';
 import { useTranslation } from 'react-i18next';
@@ -39,13 +39,14 @@ export default function AccountDrower({ drower }) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} ><Typography variant='h5' sx={{ marginTop: 1 }} color='text.primary'>{drower}</Typography></Button>
+          <IconButton onClick={toggleDrawer(anchor, true)} sx={{padding:'5px 0'}}><Typography variant='h5' sx={{ marginTop: 1 }} color='text.primary'>{drower}</Typography></IconButton>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
             color='primary'
           >
+    <Container  sx={{paddingLeft:'50px'}} maxWidth={false}>
 
             <Box display='flex' padding='24px' alignItems='center' justifyContent='space-between'>
               <Typography component='h3' variant='h2'>{t("ACCOUNT")}</Typography>
@@ -58,9 +59,9 @@ export default function AccountDrower({ drower }) {
               <Registeration text={t('LOG IN')} />
               </Box>
               <Box component={routerLink} to={'/Register'} sx={{textDecorationLine:'none'}}>
-                <LineHover text={'CREATE ACCOUNT'} />
+                <LineHover text={t('CREATE ACCOUNT')} />
               </Box>
-            </Box>
+            </Box></Container>
 
             {list(anchor)}
           </Drawer>

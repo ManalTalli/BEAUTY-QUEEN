@@ -2,7 +2,7 @@ import React from 'react'
 import useCart from '../../hooks/useCart'
 import { useCounterStore } from '../../store/useCounterStore';
 import Loader from '../../ui/Loader';
-import { Box, Button, IconButton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Button, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Typography } from '@mui/material';
 import useRemoveFromCart from '../../hooks/useRemoveFromCart';
 import useUpdateCartItem from '../../hooks/useUpdateCartItem';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -36,6 +36,7 @@ export default function Cart() {
   
   console.log(data);
   return (
+    <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
     <Box className='cart' sx={{py:5}}>
       <Typography component={'h1'}>My Cart</Typography>
       <TableContainer>
@@ -82,6 +83,6 @@ export default function Cart() {
       <Box >
         <Button onClick={()=>checkout('/Cart/Checkout')}>Checkout</Button>
       </Box>
-    </Box>
+    </Box></Container>
   )
 }

@@ -11,7 +11,7 @@ import Box from '@mui/material/Typography';
 import React, { useState } from 'react'
 import useCart from '../../hooks/useCart';
 import Loader from '../../ui/Loader';
-import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button, Container, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import useCheckout from '../../hooks/useCheckout';
 
 export default function Checkout() {
@@ -21,6 +21,7 @@ export default function Checkout() {
       if (isLoading) return <Loader/>
   if (isError) return <Box color={'red'}>{error.message}</Box>
   return (
+    <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
     <Box className='cart' sx={{py:5}}>
       <Typography component={'h1'}>checkout</Typography>
       <TableContainer>
@@ -70,7 +71,7 @@ export default function Checkout() {
 
       </Box>
 
-    </Box>
+    </Box></Container>
   
   )
 }

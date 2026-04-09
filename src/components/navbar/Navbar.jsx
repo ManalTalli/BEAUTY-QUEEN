@@ -24,6 +24,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import lightLogo from '../../assets/img/Logo.png';
 import darkLogo from '../../assets/img/LOGODARk.png';
 import NavDrower from '../drower/NavDrower';
+import { useEffect } from 'react';
+import { HashLink, NavHashLink } from 'react-router-hash-link';
 
 export default function Navbar() {
   const token = useAuthStore((state) => state.token);
@@ -48,49 +50,134 @@ export default function Navbar() {
     navigate('/');
   }
   const logoSrc = isDarkMode ? darkLogo : lightLogo;
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  // مراقبة السكرول
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1, textTransform: 'uppercase' }} >
-      <AppBar position="static" sx={{
-        backgroundColor: 'primary',
-        boxShadow: 'none'
-      }} >
+      <AppBar position="fixed"
+        sx={{
+          // الحالة الافتراضية: شفافة
+          backgroundColor: isScrolled ? 'rgba(248, 192, 196, 0.95)' : 'transparent',
+          boxShadow: isScrolled ? 3 : 'none',
+          transition: 'all 0.2s ease-in-out',
+          color: '#5D4037', // لون النصوص (البني الداكن)
+
+          // الحالة عند التأشير بالماوس (حتى لو لم ينزل للسفل)
+          '&:hover': {
+            backgroundColor: 'rgba(248, 192, 196, 0.95)',
+            backdropFilter: 'blur(8px)', // تأثير تغبيش أنيق خلف النافبار
+          }
+        }} >
 
         <Toolbar display='flex' sx={{ justifyContent: 'space-between' }}>
-          <Box  sx={{ mr: 2, display: { md: 'none' } }}>
-          <NavDrower />
+          <Box sx={{ mr: 2, display: { md: 'none' } }}>
+            <NavDrower />
           </Box>
           {token ?
             (
               <>
-                <Box sx={{ display: { xs:'none',sm: 'none', md: 'flex' }, gap: '20px' }}>
+                <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, gap: '20px' }}>
+                  <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
                   <Link component={routerLink} to={'/Shop'} variant='h5' color="text.primary" underline='none'>{t('Shop')}</Link>
-                  <Link component={routerLink} to={'/NewArrivals'} variant='h5' color="text.primary" underline='none'>{t('New Arrivals')}</Link>
-                  <Link component={routerLink} to={'/Bestsellers'} variant='h5' color="text.primary" underline='none'>{t('Bestsellers')}</Link>
-                  <Link component={routerLink} to={'/Gifts'} variant='h5' color="text.primary" underline='none'>{t('Gifts')}</Link>
+                  <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
+                  <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
+                  <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
                 </Box>
-              </>
-            ) :
-            (<></>)
-          }
-          <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+                <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+
+                <Box display='flex' gap={'20px'} sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                  <Box sx={{ paddingTop: '7px' }}>
+                    <SearchDrower drower={t('Search')} /></Box>
+                  <FormControl variant="standard" sx={{ marginTop: 1 }}>
+                    <Select
+                      value=""
+                      displayEmpty
+                      disableUnderline
+                      renderValue={() => (
+                        <Typography variant="h5" sx={{ color: 'text.primary', cursor: 'pointer' }}>
+                          {t('ACCOUNT')}
+                        </Typography>
+                      )}
+                      sx={{
+                        '& .MuiSelect-select': {
+                          paddingTop: '0px !important',
+                          paddingBottom: '0px !important',
+                          display: 'flex',
+                          alignItems: 'center',
+                        },
+                        '& .MuiSvgIcon-root': {
+                          color: 'text.primary',
+                        }
+                      }}
+                    >
+                      <MenuItem component={routerLink} to="/Profile">
+                        <Typography variant="h5">{t('Profile')}</Typography>
+                      </MenuItem>
 
 
-          <Box color='black' display='flex' gap='20px' sx={{ display: { xs: 'none', sm: 'flex' } }}>
-            {token ? (<>
-            <Box sx={{paddingTop:'7px'}}>
-              <SearchDrower drower={t('Search')} /></Box>
-              <FormControl variant="standard" sx={{ marginTop: 1 }}>
+                      <MenuItem onClick={handleLogout}>
+                        <Typography variant="h5">{t('Logout')}</Typography>
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  <FormControl variant='standard' sx={{ marginTop: 1 }}>
+                    <Select
+                      disableUnderline
+                      sx={{
+                        '& .MuiSelect-select': {
+                          paddingTop: '0px !important',
+                          paddingBottom: '0px !important',
+                          display: 'flex',
+                          alignItems: 'center',
+                        },
+                        '& .MuiSvgIcon-root': {
+                          color: 'text.primary',
+                        }
+                      }}
+                      labelId="Language-label"
+                      id="Language"
+                      value={Language}
+                      onChange={(e) => handleLanguage(e.target.value)}
+                      renderValue={() => (
+                        <Typography variant='h5'>{t('Language')}</Typography>)}
+                    >
+                      <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
+                      <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
+                    </Select>
+                  </FormControl>
+                  <Link component={routerLink} to={'/Cart'} color="text.primary" variant='h5' underline='none' sx={{ marginTop: 1 }}><ShoppingBagOutlinedIcon sx={{ width: '20px' }} />({cartCount})</Link>
+                  <IconButton onClick={toggleTheme} sx={{ paddingRight: '0px' }}>
+                    {mode === 'light' ? <DarkModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} />}
+                  </IconButton>
+                </Box>
+              </>) :
+            (<>
+              <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, gap: '20px' }}>
+                <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
+                <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
+                <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
+                <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
+
+              </Box>
+              <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+              <Box display={'flex'} gap={'20px'} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }}}>
+              <FormControl variant='standard' sx={{ marginTop: 1 }}>
                 <Select
-                  value=""
-                  displayEmpty
                   disableUnderline
-                  renderValue={() => (
-                    <Typography variant="h5" sx={{ color: 'text.primary', cursor: 'pointer' }}>
-                      {t('Account')}
-                    </Typography>
-                  )}
                   sx={{
                     '& .MuiSelect-select': {
                       paddingTop: '0px !important',
@@ -102,72 +189,30 @@ export default function Navbar() {
                       color: 'text.primary',
                     }
                   }}
+                  labelId="Language-label"
+                  id="Language"
+                  value={Language}
+                  onChange={(e) => handleLanguage(e.target.value)}
+                  renderValue={() => (
+                    <Typography variant='h5'>{t('Language')}</Typography>)}
                 >
-                  <MenuItem component={routerLink} to="/Profile">
-                    <Typography variant="h5">{t('Profile')}</Typography>
-                  </MenuItem>
-
-
-                  <MenuItem onClick={handleLogout}>
-                    <Typography variant="h5">{t('Logout')}</Typography>
-                  </MenuItem>
+                  <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
+                  <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
                 </Select>
               </FormControl>
 
-            </>)
-              : (<></>)}
-            <FormControl variant='standard' sx={{ marginTop: 1 }}>
-              <Select
-                disableUnderline
-                sx={{
-                  '& .MuiSelect-select': {
-                    paddingTop: '0px !important',
-                    paddingBottom: '0px !important',
-                    display: 'flex',
-                    alignItems: 'center',
-                  },
-                  '& .MuiSvgIcon-root': {
-                    color: 'text.primary',
-                  }
-                }}
-                labelId="Language-label"
-                id="Language"
-                value={Language}
-                onChange={(e) => handleLanguage(e.target.value)}
-                renderValue={() => (
-                  <Typography variant='h5'>{t('Language')}</Typography>)}
-              >
-                <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
-                <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
-              </Select>
-            </FormControl>
-            {token ?
-              (
-                <>
+              <AccountDrower drower={t('ACCOUNT')} />
 
 
-                  <Link component={routerLink} to={'/Cart'} color="text.primary" underline='none' sx={{ marginTop: 1 }}><ShoppingBagOutlinedIcon />({cartCount})</Link>
-                </>
-              ) :
-              (<>
-                <AccountDrower drower={t('Account')} />
+              <IconButton onClick={toggleTheme} sx={{ paddingRight: '0px' }}>
+                {mode === 'light' ? <DarkModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} />}
+              </IconButton>
+              </Box>
 
-              </>)
-            }
-
-            <Button onClick={toggleTheme} color='inherit'>
-              {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px" }} />}
-            </Button>
-          </Box>
-
-
+            </>)}
 
         </Toolbar>
       </AppBar>
-
     </Box >
-
-
-
   );
 }

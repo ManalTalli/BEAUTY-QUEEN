@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import Categories from '../../components/categories/Categories'
 import Products from '../../components/products/Products'
 import FilterDrower from '../../components/drower/FilterDrower';
+import { Container } from '@mui/material';
 
 export default function Shop() {
   const [currentCat, setCurrentCat] = useState("ALL");
 
   return (
-    <div>
+      <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
       <Categories onSelect={setCurrentCat} />
       <FilterDrower onSelect={setCurrentCat} currentCat={currentCat} drower='Filter' />
-      <Products currentCat={currentCat} />
-    </div>
+      <Products currentCat={currentCat} /></Container>
   )
 }
