@@ -193,14 +193,14 @@ export default function Navbar() {
                   value={Language}
                   onChange={(e) => handleLanguage(e.target.value)}
                   renderValue={() => (
-                    <Typography variant='h5'>{t('Language')}</Typography>)}
+                    <Typography variant='h5' color="#5D4037">{t('Language')}</Typography>)}
                 >
                   <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
                   <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
                 </Select>
               </FormControl>
 
-              <AccountDrower drower={t('ACCOUNT')} />
+              <AccountDrower drower={t('ACCOUNT')} color={"#5D4037"} />
 
 
               <IconButton onClick={toggleTheme} sx={{ paddingRight: '0px' }}>

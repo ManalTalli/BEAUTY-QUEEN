@@ -11,7 +11,7 @@ import Registeration from '../registeration/Registeration';
 import { useTranslation } from 'react-i18next';
 import LineHover from '../lineHover/LineHover';
 
-export default function AccountDrower({ drower }) {
+export default function AccountDrower({ drower,color }) {
   const { t } = useTranslation();
 
   const [state, setState] = React.useState({
@@ -39,7 +39,7 @@ export default function AccountDrower({ drower }) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)} sx={{padding:'5px 0'}}><Typography variant='h5' sx={{ marginTop: 1 }} color='text.primary'>{drower}</Typography></IconButton>
+          <IconButton onClick={toggleDrawer(anchor, true)} sx={{padding:'5px 0'}}><Typography variant='h5' sx={{ marginTop: 1 }} color={color}>{drower}</Typography></IconButton>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

@@ -14,7 +14,7 @@ export default function useProducts(id){
     }
     
     const query= useQuery({
-        queryKey:['product',i18n.language,id],
+        queryKey:['product','en',id],
         queryFn:getProducts,
         staleTime:1000*60*5
     });

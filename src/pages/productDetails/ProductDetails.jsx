@@ -24,7 +24,7 @@ export default function ProductDetails() {
           <Typography component={'h1'} variant='h3' gutterBottom>{product.name}</Typography>
           <Typography component={'span'} variant='body1' sx={{display:'block'}} gutterBottom>{product.price} $</Typography>
           <Rating readOnly value={product.rate}></Rating>
-          <Typography variant='body1' gutterBottom color='#555'>{product.description}</Typography>
+          <Typography variant='body1' gutterBottom >{product.description}</Typography>
           <Typography color='text.secondery'>Avaiable Quantity : {product.quantity}</Typography>
           <Button disabled={isPending} color='primary' variant='contained' onClick={()=>mutate({
             ProductId:product.id,

@@ -155,14 +155,14 @@ export default function NavDrower() {
               </>
             ) :
             (<>
-              <Box display={'flex'} flexDirection={'column'} sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' }, gap: '20px' }}>
+              <Box display={'flex'} flexDirection={'column'} sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' }, gap: '20px', textTransform: 'uppercase' }}>
                 <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
                 <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
                 <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
                 <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
               </Box>
-              <AccountDrower drower={t('ACCOUNT')} sx={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: "0px", paddingRight: "0px" }} />
-              <FormControl variant='standard' sx={{ marginTop: 1 }}>
+              <AccountDrower drower={t('ACCOUNT')} color={'text.primary'} sx={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: "0px", paddingRight: "0px" }} />
+              <FormControl variant='standard' sx={{ marginTop: 1, textTransform: 'uppercase' }}>
                 <Select
                   disableUnderline
                   sx={{
