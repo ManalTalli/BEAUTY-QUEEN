@@ -1,11 +1,14 @@
-import { Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
+import BackHome from '../../components/backHome/BackHome'
 
 export default function Terms() {
   return (
-    <div>
-      <Typography component='h1'>Terms of service</Typography>
-      <Typography>OVERVIEW
+    <Box>
+    <BackHome />
+    <Container disableGutters sx={{px:2,marginTop:'80px',}} maxWidth={false}>
+      <Typography component='h1' variant='h1' paddingBottom={'20px'}>Terms of service</Typography>
+      <Typography paddingBottom={'20px'}>OVERVIEW
 This website is operated by Beauty Queen . Throughout the site, the terms “we”, “us” and “our” refer to Beauty Queen . Beauty Queen offers this website, including all information, tools and Services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.
 
 By visiting our site and/ or purchasing something from us, you engage in our “Service” and agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”), including those additional terms and conditions and policies referenced herein and/or available by hyperlink. These Terms of Service apply to all users of the site, including without limitation users who are browsers, vendors, customers, merchants, and/ or contributors of content.
@@ -115,6 +118,6 @@ Shop 331, 3/F, Argyle Centre, Phase 1, 688
 [INSERT BUSINESS PHONE NUMBER]
 [INSERT BUSINESS REGISTRATION NUMBER]
 [INSERT VAT NUMBER]</Typography>
-    </div>
+    </Container></Box>
   )
 }

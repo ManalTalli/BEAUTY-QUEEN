@@ -1,9 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/home/Home";
-import NewArrivals from "./pages/newArrivals/NewArrivals";
-import Bestsellers from "./pages/bestsellers/Bestsellers";
-import Gifts from "./pages/gifts/Gifts";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
 import Register from "./pages/auth/register/Register";
@@ -44,27 +41,6 @@ const router = createBrowserRouter ([
             },
 
             {
-                path:'NewArrivals',
-                element:
-                <ProtectedRouter>
-                <NewArrivals/>
-                </ProtectedRouter>
-            },
-            {
-                path:'Bestsellers',
-                element:
-                <ProtectedRouter>
-                <Bestsellers/>
-                </ProtectedRouter>
-            },
-            {
-                path:'Gifts',
-                element:
-                <ProtectedRouter>
-                <Gifts/>
-                </ProtectedRouter>
-            },
-            {
                 path:'Cart',
                 element:
                 <ProtectedRouter>
@@ -96,13 +72,7 @@ const router = createBrowserRouter ([
                 ]
             },
             
-            {
-                path:'Terms',
-                element:
-                <ProtectedRouter>
-                <Terms/>
-                </ProtectedRouter>
-            }
+            
             
         ]
     },
@@ -122,6 +92,10 @@ const router = createBrowserRouter ([
             {
                 path:'ResendPassword',
                 element:<ResendPassword/>
+            },
+            {
+                path:'Terms',
+                element:<Terms/>
             }
         ]
     }

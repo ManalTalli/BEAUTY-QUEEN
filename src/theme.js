@@ -7,12 +7,12 @@ const getTheme = (mode) => {
     mode,
     ...(mode === 'light'
       ? {
-          primary: { main: '#F8C0C4', contrastText: '#5D4037' },
+          primary: { main: '#F8C0C4', contrastText: '#FFF5F5' },
           background: { default: '#FFF5F5', paper: '#ffffff' },
           text: { primary: '#5D4037' },
         }
       : {
-          primary: { main: '#F8C0C4', contrastText: '#FFF5F5' },
+          primary: { main: '#F8C0C4', contrastText: '#5D4037' },
           background: { default: '#1A1212', paper: '#2D2020' }, 
           text: { primary: '#FFF5F5', secondary: '#F8C0C4' },
         }),
@@ -47,6 +47,11 @@ const getTheme = (mode) => {
                 fontWeight: 400,
                 lineHeight: "14.274px",
             },
+            body1:{
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "24px",
+            }
 
 
         },

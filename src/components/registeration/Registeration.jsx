@@ -14,7 +14,7 @@ export default function Registeration({ text }) {
                         display: 'block',
                         textAlign: 'center',
                         padding: '10px',
-                        backgroundColor: 'contrastText.primary',
+                        backgroundColor: 'transparent',
                         color: 'text.primary',
                         textDecoration: 'none',
                         position: 'relative',
@@ -32,7 +32,7 @@ export default function Registeration({ text }) {
                             left: '-100%',
                             width: '100%',
                             height: '100%',
-                            backgroundColor: '#808080',
+                            backgroundColor: 'text.primary',
                             transition: 'all 0.4s ease',
                             zIndex: -1,
                         },
@@ -40,8 +40,9 @@ export default function Registeration({ text }) {
                             left: 0,
                         },
                         '&:hover': {
-                            color: '#fff',
-                            border: '1px solid #808080',
+                            color: 'primary.contrastText',
+                            border: '1px solid',
+                            borderColor:'text.primary'
                         },
                     }}
                 >

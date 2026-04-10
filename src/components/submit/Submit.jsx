@@ -19,14 +19,15 @@ export default function Submit({ text }) {
                         display: 'block',
                         textAlign: 'center',
                         padding: '10px',
-                        backgroundColor: '#ffffff',
-                        color: 'rgb(26, 26, 26)',
+                        backgroundColor: 'transparent',
+                        color: 'text.primary',
                         textDecoration: 'none',
                         position: 'relative',
                         overflow: 'hidden',
                         zIndex: 1,
                         transition: 'color 0.4s ease',
-                        border: '1px solid black',
+                        border: '1px solid',
+                        borderColor:'text.primary',
 
 
                         '&::before': {
@@ -36,7 +37,7 @@ export default function Submit({ text }) {
                             left: '-100%',
                             width: '100%',
                             height: '100%',
-                            backgroundColor: '#808080',
+                            backgroundColor: 'text.primary',
                             transition: 'all 0.4s ease',
                             zIndex: -1,
                         },
@@ -44,8 +45,9 @@ export default function Submit({ text }) {
                             left: 0,
                         },
                         '&:hover': {
-                            color: '#fff',
-                            border: '1px solid #808080',
+                            color: 'primary.contrastText',
+                            border: '1px solid',
+                            borderColor:'text.primary',
                         },
                     }}
                 >

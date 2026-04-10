@@ -1,16 +1,11 @@
-import React from "react";
-import { createRoot } from 'react-dom/client';
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 import detector from "i18next-browser-languagedetector";
 
 i18n
   .use(detector)
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .init({
-    // the translations
-    // (tip move them in a JSON file and import them,
-    // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
     resources: {
       en: {
         translation: {
@@ -28,14 +23,19 @@ i18n
           "Delete": "Delete",
           "Profile": "Profile",
           "Arabic": "Arabic",
-          "English":"English",
-          "WELCOME TO BEAUTY QUEEN":"WELCOME TO BEAUTY QUEEN",
-          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,":"REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,",
-          "AND MANAGE YOUR ORDERS AND RETURNS.":"AND MANAGE YOUR ORDERS AND RETURNS.",
-          "LOG IN":"LOG IN",
-          "CREATE ACCOUNT":"CREATE ACCOUNT",
+          "English": "English",
+          "WELCOME TO BEAUTY QUEEN": "WELCOME TO BEAUTY QUEEN",
+          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,": "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,",
+          "AND MANAGE YOUR ORDERS AND RETURNS.": "AND MANAGE YOUR ORDERS AND RETURNS.",
+          "LOG IN": "LOG IN",
+          "CREATE ACCOUNT": "CREATE ACCOUNT",
+          "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL": "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL",
+          "START SHOPPING NOW!": "START SHOPPING NOW!",
+          "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.": "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.",
+          "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.": "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.",
+          "Discover a seamless shopping experience where variety meets value, all in one place.": "Discover a seamless shopping experience where variety meets value, all in one place.",
         }
-      },
+      }, // أضفت قوس الإغلاق هنا لترجمة الإنجليزية
       ar: {
         translation: {
           "Home": "الرئيسية",
@@ -48,20 +48,28 @@ i18n
           "Logout": "خروج",
           "ACCOUNT": "الحساب",
           "Login": "دخول",
+          "Register": "تسجيل",
           "Delete": "حذف",
-          "Profile": "الملف الشخصي ",
-          "Arabic":"عربي",
-          "English":"انجليزي",
-          "WELCOME TO BEAUTY QUEEN":"أهلاً بكم في بيوتي كوين",
-          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,":"سجل في بيوتي كوين لحفظ عناوين التوصيل الخاصة بك،",
-          "AND MANAGE YOUR ORDERS AND RETURNS.":"وإدارة طلباتك وعمليات الإرجاع.",
-          "LOG IN":"دخول",
-          "CREATE ACCOUNT":"انشاء حساب",
-
+          "Profile": "الملف الشخصي",
+          "Arabic": "عربي",
+          "English": "انجليزي",
+          "WELCOME TO BEAUTY QUEEN": "أهلاً بكم في بيوتي كوين",
+          "REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,": "سجل في بيوتي كوين لحفظ عناوين التوصيل الخاصة بك،",
+          "AND MANAGE YOUR ORDERS AND RETURNS.": "وإدارة طلباتك وعمليات الإرجاع.",
+          "LOG IN": "دخول",
+          "CREATE ACCOUNT": "انشاء حساب",
+          "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL": "اكتشف كل شيء، على طريقتك. مجموعة منتقاة للجميع",
+          "START SHOPPING NOW!": "ابدأ التسوق الآن!",
+          "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.": "وجهتك الأمثل للتسوق الشامل، حيث نقدم لك تشكيلة مختارة بعناية من كل ما تحتاجه لأسلوب حياتك.",
+          "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.": "من أحدث صيحات الموضة إلى أساسيات الحياة اليومية، نولي الجودة والراحة أولوية قصوى في كل طلب.",
+          "Discover a seamless shopping experience where variety meets value, all in one place.": "اكتشف تجربة تسوق سلسة تجمع بين التنوع والقيمة، كل ذلك في مكان واحد.",
         }
       }
     },
-    lng: "", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    }
   });
+
 export default i18n;

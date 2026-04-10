@@ -63,7 +63,7 @@ export default function NavDrower() {
   return (
     <div>
       <Button onClick={toggleDrawer('left', true)}>
-        <Typography variant="h5" sx={{ marginTop: 1 }} color="text.primary">
+        <Typography variant="h5" sx={{ marginTop: 1 }} color="#5D4037">
           <MenuIcon />
         </Typography>
       </Button>
@@ -78,16 +78,16 @@ export default function NavDrower() {
           {token ?
             (
               <>
-                <Box display={'flex'} flexDirection={'column'} sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' }, gap: '20px' }}>
+                <Box display={'flex'}  flexDirection={'column'} sx={{ display: { xs: 'flex', sm: 'flex', md: 'none',textTransform: 'uppercase' }, gap: '20px' }}>
                   <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
                   <Link component={routerLink} to={'/Shop'} variant='h5' color="text.primary" underline='none'>{t('Shop')}</Link>
                   <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
                   <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
                   <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
                 </Box>
-                <Box display={'flex'} flexDirection={'column'} gap='20px' paddingTop={'20px'} sx={{ display: { xs: 'flex', sm: 'none' } }}>
+                <Box display={'flex'} flexDirection={'column'} gap='20px' paddingTop={'20px'} sx={{ display: { xs: 'flex', sm: 'none',textTransform: 'uppercase' } }}>
                   <Box sx={{ paddingTop: '7px' }}>
-                    <SearchDrower drower={t('Search')} /></Box>
+                    <SearchDrower drower={t('Search')} color={'text.primary'}/></Box>
                   <FormControl variant="standard" sx={{ marginTop: 1 }}>
                     <Select
                       value=""

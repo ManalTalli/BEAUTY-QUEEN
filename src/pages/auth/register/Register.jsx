@@ -43,14 +43,15 @@ export default function Register() {
 
         
         <FormControl color='text.primary' className={style.customTextField1} sx={{ marginTop: '30px' }}>
-          <FormControlLabel control={<Checkbox required />} label={<Typography component='span' variant='h3'>I have read and are agreeing to our <Link component={routerLink} to='/Terms' color='#111' className={style.customTextField1} sx={{
+          <FormControlLabel control={<Checkbox required />} label={<Typography component='span' variant='h3'>I have read and are agreeing to our
+            <Link component={routerLink} to='/Terms' color='#111' className={style.customTextField1} sx={{
             color: 'text.primary',
             textDecorationColor: 'black',
             '&:hover': {
               color: 'text.primary',
               textDecorationColor: 'black',
             },
-          }}>Terms of Use </Link></Typography>
+          }}> Terms of Use </Link></Typography>
           } />
 
         </FormControl>

@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Typography } from '@mui/material';
 
-export default function SearchDrower({drower}) {
+export default function SearchDrower({drower,color}) {
     const {t} = useTranslation ();
     const [state, setState] = React.useState({
     
@@ -43,7 +43,7 @@ export default function SearchDrower({drower}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} sx={{padding:'0px',display:'flex',justifyContent:'flex-start'}}><Typography color="text.primary" variant='h5' paddingTop={'5px'}>{drower}</Typography></Button>
+          <Button onClick={toggleDrawer(anchor, true)} sx={{padding:'0px',display:'flex',justifyContent:'flex-start'}}><Typography color={color} variant='h5' paddingTop={'5px'}>{drower}</Typography></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

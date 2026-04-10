@@ -49,7 +49,7 @@ export default function Navbar() {
     logout(queryClient);
     navigate('/');
   }
-  const logoSrc = isDarkMode ? darkLogo : lightLogo;
+  const logoSrc = lightLogo;
   const [isScrolled, setIsScrolled] = useState(false);
 
   // مراقبة السكرول
@@ -69,8 +69,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1, textTransform: 'uppercase' }} >
       <AppBar position="fixed"
         sx={{
-          // الحالة الافتراضية: شفافة
-          backgroundColor: isScrolled ? 'rgba(248, 192, 196, 0.95)' : 'transparent',
+          backgroundColor: isScrolled ? 'primary.main' : 'transparent',
           boxShadow: isScrolled ? 3 : 'none',
           transition: 'all 0.2s ease-in-out',
           color: '#5D4037', // لون النصوص (البني الداكن)
@@ -90,24 +89,24 @@ export default function Navbar() {
             (
               <>
                 <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, gap: '20px' }}>
-                  <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
-                  <Link component={routerLink} to={'/Shop'} variant='h5' color="text.primary" underline='none'>{t('Shop')}</Link>
-                  <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
-                  <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
-                  <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
+                  <Link component={routerLink} to={'/'} variant='h5' color="#5D4037" underline='none'>{t('Home')}</Link>
+                  <Link component={routerLink} to={'/Shop'} variant='h5' color="#5D4037" underline='none'>{t('Shop')}</Link>
+                  <Link component={HashLink} smooth to="/#About" variant='h5' color="#5D4037" underline='none'>{t('About Us')}</Link>
+                  <Link component={HashLink} smooth to="/#Service" variant='h5' color="#5D4037" underline='none'>{t('Services')}</Link>
+                  <Link component={HashLink} smooth to="/#faq" variant='h5' color="#5D4037" underline='none'>{t('FAQ')}</Link>
                 </Box>
-                <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+                <Link component={routerLink} color="#5D4037" to={'/'} ><img src={logoSrc} alt="" /></Link>
 
                 <Box display='flex' gap={'20px'} sx={{ display: { xs: 'none', sm: 'flex' } }}>
                   <Box sx={{ paddingTop: '7px' }}>
-                    <SearchDrower drower={t('Search')} /></Box>
+                    <SearchDrower drower={t('Search')} color={'#5D4037'} /></Box>
                   <FormControl variant="standard" sx={{ marginTop: 1 }}>
                     <Select
                       value=""
                       displayEmpty
                       disableUnderline
                       renderValue={() => (
-                        <Typography variant="h5" sx={{ color: 'text.primary', cursor: 'pointer' }}>
+                        <Typography variant="h5" sx={{ color: '#5D4037', cursor: 'pointer' }}>
                           {t('ACCOUNT')}
                         </Typography>
                       )}
@@ -119,7 +118,7 @@ export default function Navbar() {
                           alignItems: 'center',
                         },
                         '& .MuiSvgIcon-root': {
-                          color: 'text.primary',
+                          color: '#5D4037',
                         }
                       }}
                     >
@@ -145,7 +144,7 @@ export default function Navbar() {
                           alignItems: 'center',
                         },
                         '& .MuiSvgIcon-root': {
-                          color: 'text.primary',
+                          color: '#5D4037',
                         }
                       }}
                       labelId="Language-label"
@@ -153,27 +152,27 @@ export default function Navbar() {
                       value={Language}
                       onChange={(e) => handleLanguage(e.target.value)}
                       renderValue={() => (
-                        <Typography variant='h5'>{t('Language')}</Typography>)}
+                        <Typography variant='h5' color='#5D4037'>{t('Language')}</Typography>)}
                     >
                       <MenuItem value={'ar'}><Typography variant='h5'>{t('Arabic')}</Typography></MenuItem>
                       <MenuItem value={'en'}><Typography variant='h5'>{t('English')}</Typography></MenuItem>
                     </Select>
                   </FormControl>
-                  <Link component={routerLink} to={'/Cart'} color="text.primary" variant='h5' underline='none' sx={{ marginTop: 1 }}><ShoppingBagOutlinedIcon sx={{ width: '20px' }} />({cartCount})</Link>
+                  <Link component={routerLink} to={'/Cart'} color="#5D4037" variant='h5' underline='none' sx={{ marginTop: 1 }}><ShoppingBagOutlinedIcon sx={{ width: '20px' }} />({cartCount})</Link>
                   <IconButton onClick={toggleTheme} sx={{ paddingRight: '0px' }}>
-                    {mode === 'light' ? <DarkModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} />}
+                    {mode === 'light' ? <DarkModeIcon sx={{ color: "#5D4037", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "#5D4037", padding: "0px", width: '20px' }} />}
                   </IconButton>
                 </Box>
               </>) :
             (<>
               <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, gap: '20px' }}>
-                <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
-                <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>
-                <Link component={HashLink} smooth to="/#Service" variant='h5' color="text.primary" underline='none'>{t('Services')}</Link>
-                <Link component={HashLink} smooth to="/#faq" variant='h5' color="text.primary" underline='none'>{t('FAQ')}</Link>
+                <Link component={routerLink} to={'/'} variant='h5' color="#5D4037" underline='none'>{t('Home')}</Link>
+                <Link component={HashLink} smooth to="/#About" variant='h5' color="#5D4037" underline='none'>{t('About Us')}</Link>
+                <Link component={HashLink} smooth to="/#Service" variant='h5' color="#5D4037" underline='none'>{t('Services')}</Link>
+                <Link component={HashLink} smooth to="/#faq" variant='h5' color="#5D4037" underline='none'>{t('FAQ')}</Link>
 
               </Box>
-              <Link component={routerLink} color="text.primary" to={'/'} ><img src={logoSrc} alt="" /></Link>
+              <Link component={routerLink} color="#5D4037" to={'/'} ><img src={logoSrc} alt="" /></Link>
               <Box display={'flex'} gap={'20px'} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }}}>
               <FormControl variant='standard' sx={{ marginTop: 1 }}>
                 <Select
@@ -186,7 +185,7 @@ export default function Navbar() {
                       alignItems: 'center',
                     },
                     '& .MuiSvgIcon-root': {
-                      color: 'text.primary',
+                      color: '#5D4037',
                     }
                   }}
                   labelId="Language-label"
@@ -205,7 +204,7 @@ export default function Navbar() {
 
 
               <IconButton onClick={toggleTheme} sx={{ paddingRight: '0px' }}>
-                {mode === 'light' ? <DarkModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "text.primary", padding: "0px", width: '20px' }} />}
+                {mode === 'light' ? <DarkModeIcon sx={{ color: "#5D4037", padding: "0px", width: '20px' }} /> : <LightModeIcon sx={{ color: "#5D4037", padding: "0px", width: '20px' }} />}
               </IconButton>
               </Box>
 
