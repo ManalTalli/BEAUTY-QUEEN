@@ -4,6 +4,8 @@ import i18n from "../i18next";
 
 const authAxiosInstance = axios.create({
     baseURL: 'https://knowledgeshop.runasp.net/api',
+    headers: {
+    'Accept-Language': 'en'},
     withCredentials: true,
 
 });
