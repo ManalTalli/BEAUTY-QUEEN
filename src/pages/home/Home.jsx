@@ -5,6 +5,7 @@ import Hero from '../../components/home/Hero';
 import About from '../../components/home/About';
 import Service from '../../components/home/Service';
 import FAQ from '../../components/home/FAQ';
+import Slider from '../../components/home/Slider';
 
 export default function Home() {
   
@@ -12,6 +13,7 @@ export default function Home() {
     <div>
       <Hero/>
       <About/>
+      <Slider/>
       <Service/>
       <FAQ/>
      

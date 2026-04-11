@@ -29,11 +29,20 @@ i18n
           "AND MANAGE YOUR ORDERS AND RETURNS.": "AND MANAGE YOUR ORDERS AND RETURNS.",
           "LOG IN": "LOG IN",
           "CREATE ACCOUNT": "CREATE ACCOUNT",
-          "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL": "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL",
+          "DISCOVER EVERYTHING,": "DISCOVER EVERYTHING,",
+          " YOUR WAY.":" YOUR WAY.",
+          "Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.":"Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.",
           "START SHOPPING NOW!": "START SHOPPING NOW!",
           "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.": "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.",
           "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.": "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.",
           "Discover a seamless shopping experience where variety meets value, all in one place.": "Discover a seamless shopping experience where variety meets value, all in one place.",
+           "Fast Delivery":"Fast Delivery",
+           "Worldwide shipping for all products with secure packaging.":"Worldwide shipping for all products with secure packaging.",
+          "24/7 Support":"24/7 Support",
+          "Our team is available anytime to help with your inquiries.":"Our team is available anytime to help with your inquiries.",
+          "Secure Payment":"Secure Payment",
+          "Multiple secure payment methods for a safe shopping experience.":"Multiple secure payment methods for a safe shopping experience.", 
+
         }
       }, 
       ar: {
@@ -58,11 +67,20 @@ i18n
           "AND MANAGE YOUR ORDERS AND RETURNS.": "وإدارة طلباتك وعمليات الإرجاع.",
           "LOG IN": "دخول",
           "CREATE ACCOUNT": "انشاء حساب",
-          "DISCOVER EVERYTHING, YOUR WAY. A CURATED COLLECTION FOR ALL": "اكتشف كل شيء، على طريقتك. مجموعة منتقاة للجميع",
+          "DISCOVER EVERYTHING,": "اكتشف كل شيء،",
+          "YOUR WAY.":" على طريقتك.",
           "START SHOPPING NOW!": "ابدأ التسوق الآن!",
           "Your premier all-in-one shopping destination, offering a curated selection of everything you need for your lifestyle.": "وجهتك الأمثل للتسوق الشامل، حيث نقدم لك تشكيلة مختارة بعناية من كل ما تحتاجه لأسلوب حياتك.",
           "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.": "من أحدث صيحات الموضة إلى أساسيات الحياة اليومية، نولي الجودة والراحة أولوية قصوى في كل طلب.",
           "Discover a seamless shopping experience where variety meets value, all in one place.": "اكتشف تجربة تسوق سلسة تجمع بين التنوع والقيمة، كل ذلك في مكان واحد.",
+          "Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.":"تسوقي تشكيلة مختارة بعناية من الأزياء والمنزل وأسلوب الحياة مع خدمة شحن سريعة وآمنة.",
+        "Fast Delivery":"توصيل سريع",
+        "Worldwide shipping for all products with secure packaging.":"شحن دولي لجميع المنتجات مع تغليف آمن.",
+        "24/7 Support":"دعم دائم",
+        "Our team is available anytime to help with your inquiries.":"فريقنا متوفر في أي وقت لمساعدتكم في استفساراتكم.",
+        "Secure Payment":"الدفع الآمن",
+        "Multiple secure payment methods for a safe shopping experience.":"طرق دفع آمنة متعددة لتجربة تسوق آمنة.",
+
         }
       }
     },

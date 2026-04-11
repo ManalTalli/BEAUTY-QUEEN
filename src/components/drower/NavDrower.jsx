@@ -95,7 +95,7 @@ export default function NavDrower() {
                       disableUnderline
                       renderValue={() => (
                         <Typography variant="h5" sx={{ color: 'text.primary', cursor: 'pointer' }}>
-                          {t('Account')}
+                          {t('ACCOUNT')}
                         </Typography>
                       )}
                       sx={{

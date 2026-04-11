@@ -48,6 +48,7 @@ const getTheme = (mode) => {
                 lineHeight: "14.274px",
             },
             body1: {
+                fontFamily:'Readex Pro',
                 fontSize: "15px",
                 fontWeight: 400,
                 lineHeight: "24px",

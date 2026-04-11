@@ -12,7 +12,7 @@ export default function useProducts(){
         return response.data;
     }
     const query= useQuery({
-        queryKey:['product','en'],
+        queryKey:['product',i18n.language],
         queryFn:getProducts,
         staleTime:1000*60*5
     });

@@ -4,8 +4,10 @@ import PhoneHero from '../../assets/img/Phonehero.webp'
 
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import { Link as routerLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
+  const { t } = useTranslation();
   return (
     <Box id="hero">
     <Box sx={{ display: {  xs: 'none', sm: 'flex', md: 'flex' } ,
@@ -28,11 +30,10 @@ export default function Hero() {
           fontSize: { xs: '2.5rem', md: '3rem' }
         }}
       >
-        DISCOVER EVERYTHING, <br />
-        <span style={{ color: '#C36A7A' }}>YOUR WAY.</span>
+        {t('DISCOVER EVERYTHING,')} <br />
+        <span style={{ color: '#C36A7A' }}>{t('YOUR WAY.')}</span>
       </Typography>
 
-      {/* النص الوصفي - Sub-headline */}
       <Typography 
         variant="h6" 
         sx={{ 
@@ -42,7 +43,7 @@ export default function Hero() {
           maxWidth: '450px' 
         }}
       >
-        Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.
+        {t('Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.')}
       </Typography>
 
       <Stack direction="row" spacing={2}>
@@ -65,7 +66,7 @@ export default function Hero() {
             }
           }}
         >
-          START SHOPPING NOW!
+          {t('START SHOPPING NOW!')}
         </Button>
       </Stack>
     </Box></Container></Box>

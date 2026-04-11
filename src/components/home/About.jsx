@@ -47,6 +47,7 @@ export default function About() {
         <Typography 
           variant="body1" 
           sx={{ 
+            
             maxWidth: '800px', 
             margin: '0 auto',
             fontSize: { xs: '0.9rem', md: '1rem' }, 
