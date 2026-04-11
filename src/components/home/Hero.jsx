@@ -1,5 +1,5 @@
 import React from 'react'
-import hero from '../../assets/img/Hero.png'
+import hero from '../../assets/img/hero.png'
 import PhoneHero from '../../assets/img/Phonehero.png'
 
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
