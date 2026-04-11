@@ -6,17 +6,18 @@ import About from '../../components/home/About';
 import Service from '../../components/home/Service';
 import FAQ from '../../components/home/FAQ';
 import Slider from '../../components/home/Slider';
+import { Box } from '@mui/material';
 
 export default function Home() {
   
   return (
-    <div>
+    <Box  paddingBottom={'0px'}>
       <Hero/>
       <About/>
       <Slider/>
       <Service/>
       <FAQ/>
      
-    </div>
+    </Box>
   )
 }

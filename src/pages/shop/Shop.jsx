@@ -9,7 +9,7 @@ export default function Shop() {
 
   return (
       <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
-        <Box  display='flex' alignItems='center'>
+        <Box>
       <Categories onSelect={setCurrentCat} />
       <FilterDrower  onSelect={setCurrentCat} currentCat={currentCat} drower='Filter' />
       </Box>

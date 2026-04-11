@@ -19,14 +19,18 @@ export default function Slider() {
   const duplicatedImages = [...images, ...images];
 
   return (
-    <Box sx={{ 
-        marginTop:'100px',
-      width: '100%', 
-      overflow: 'hidden', 
-      bgcolor: 'background.default',
-      borderY: '1px solid',
-      lineHeight: 0
-    }}>
+    <Box 
+      dir="ltr" 
+      sx={{ 
+        marginTop: '100px',
+        width: '100%', 
+        overflow: 'hidden', 
+        bgcolor: 'background.default',
+        borderY: '1px solid',
+        borderColor: 'divider', 
+        lineHeight: 0
+      }}
+    >
       <Box sx={{ 
         display: 'flex', 
         width: 'max-content',
@@ -37,7 +41,6 @@ export default function Slider() {
           <Box
             key={index}
             sx={{
-              
               height: '200px', 
               width: '280px',  
               flexShrink: 0,
@@ -53,8 +56,6 @@ export default function Slider() {
                 height: '100%', 
                 width: '100%', 
                 objectFit: 'cover', 
-                filter: 'grayscale(0%)',
-                opacity: 1, 
                 transition: '0.4s'
               }}
             />

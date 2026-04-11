@@ -1,6 +1,6 @@
 import React from 'react'
-import hero from '../../assets/img/Hero.webp'
-import PhoneHero from '../../assets/img/Phonehero.webp'
+import hero from '../../assets/img/Hero.png'
+import PhoneHero from '../../assets/img/Phonehero.png'
 
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import { Link as routerLink } from 'react-router-dom';
@@ -15,7 +15,7 @@ export default function Hero() {
     height: '100vh', 
     backgroundImage: `url(${hero})`,
     backgroundSize: 'cover',
-    backgroundPosition: '50px',
+    backgroundPosition: 'center',
     alignItems: 'center', 
     justifyContent: 'center' 
   }}> <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
@@ -35,7 +35,7 @@ export default function Hero() {
       </Typography>
 
       <Typography 
-        variant="h6" 
+        variant="body1" 
         sx={{ 
           color: '#7A6B6B', 
           mb: 4, 
@@ -99,7 +99,6 @@ export default function Hero() {
         <span style={{ color: '#C36A7A' }}>YOUR WAY.</span>
       </Typography>
 
-      {/* النص الوصفي - Sub-headline */}
       <Typography 
         variant="h6" 
         sx={{ 
@@ -112,7 +111,6 @@ export default function Hero() {
         Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.
       </Typography>
 
-      {/* الأزرار - Buttons */}
       <Stack direction="row" spacing={2}>
         <Button
           component={routerLink}

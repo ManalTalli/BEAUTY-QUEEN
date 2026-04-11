@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
 import { Container, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,27 +9,58 @@ import Registeration from '../registeration/Registeration';
 import { useTranslation } from 'react-i18next';
 import LineHover from '../lineHover/LineHover';
 
-export default function AccountDrower({ drower,color }) {
+export default function AccountDrower({ drower, color }) {
   const { t } = useTranslation();
-
   const [state, setState] = React.useState({
-
+    right: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 440 }}
+      // قمت بتصغير العرض هنا من 300 إلى 350 (أو القيمة التي تفضلينها) 
+      // الـ 400 والـ 500 عادة تكون عريضة، الـ 350 مناسبة جداً لمحتوى الحساب
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }} 
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}>
+    >
+      <Container sx={{ paddingLeft: '20px', paddingRight: '20px' }} maxWidth={false}>
+        {/* رأس الدرور */}
+        <Box display='flex' py={2} alignItems='center' justifyContent='space-between'>
+          <Typography component='h3' variant='h4' fontWeight="bold">{t("ACCOUNT")}</Typography>
+          <IconButton onClick={toggleDrawer(anchor, false)} size="small">
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Divider />
+
+        {/* محتوى الحساب */}
+        <Box sx={{ mt: 3 }}>
+          <Typography component='h3' variant='h5' color='text.primary' fontWeight="bold" mb={1}>
+            {t("WELCOME TO BEAUTY QUEEN")}
+          </Typography>
+          
+          <Typography mb={2} color='text.primary' variant='h4' sx={{ lineHeight: 1.6 }}>
+            {t("REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,")}
+            <br /> 
+            {t("AND MANAGE YOUR ORDERS AND RETURNS.")}
+          </Typography>
+
+          <Box mt={3} component={routerLink} to="/Login" sx={{ textDecoration: 'none', display: 'block' }}>
+            <Registeration text={t('LOG IN')} />
+          </Box>
+
+          <Box mt={1} component={routerLink} to={'/Register'} sx={{ textDecoration: 'none', display: 'block' }}>
+            <LineHover text={t('CREATE ACCOUNT')} />
+          </Box>
+        </Box>
+      </Container>
     </Box>
   );
 
@@ -39,30 +68,17 @@ export default function AccountDrower({ drower,color }) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)} sx={{padding:'5px 0'}}><Typography variant='h5' sx={{ marginTop: 1 }} color={color}>{drower}</Typography></IconButton>
+          <IconButton onClick={toggleDrawer(anchor, true)} sx={{ padding: '5px 0' }}>
+            <Typography variant='h5' sx={{ marginTop: 1 }} color={color}>
+              {drower}
+            </Typography>
+          </IconButton>
+          
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            color='primary'
           >
-    <Container  sx={{paddingLeft:'50px'}} maxWidth={false}>
-
-            <Box display='flex' padding='24px' alignItems='center' justifyContent='space-between'>
-              <Typography component='h3' variant='h2'>{t("ACCOUNT")}</Typography>
-              <CloseIcon style={{ cursor: 'pointer' }}
-                onClick={toggleDrawer(anchor, false)} /></Box>
-            <Box borderBottom='none' paddingLeft='24px' paddingRight='24px'>
-              <Typography component='h3' variant='h2' color='text.primary' marginTop='12px' marginBottom='8px'>{t("WELCOME TO BEAUTY QUEEN")}</Typography>
-              <Typography marginBottom='16px' color='text.primary' variant='h5'>{t("REGISTER ON BEAUTY QUEEN TO SAVE YOUR DELIVERY ADDRESSES,")}<br /> {t("AND MANAGE YOUR ORDERS AND RETURNS.")}</Typography>
-              <Box width='15%' marginTop='20px' component={routerLink} to="/Login" sx={{textDecorationLine:'none'}}>
-              <Registeration text={t('LOG IN')} />
-              </Box>
-              <Box component={routerLink} to={'/Register'} sx={{textDecorationLine:'none'}}>
-                <LineHover text={t('CREATE ACCOUNT')} />
-              </Box>
-            </Box></Container>
-
             {list(anchor)}
           </Drawer>
         </React.Fragment>

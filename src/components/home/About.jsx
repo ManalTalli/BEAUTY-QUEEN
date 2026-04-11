@@ -7,7 +7,7 @@ export default function About() {
     const { t } = useTranslation();
   
   return (
-    <Box 
+    <Box id='About'
       sx={{ 
         display: 'flex', 
         flexDirection: 'column', 
