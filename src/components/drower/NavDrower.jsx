@@ -155,6 +155,7 @@ export default function NavDrower() {
               </>
             ) :
             (<>
+            
               <Box display={'flex'} flexDirection={'column'} sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' }, gap: '20px', textTransform: 'uppercase' }}>
                 <Link component={routerLink} to={'/'} variant='h5' color="text.primary" underline='none'>{t('Home')}</Link>
                 <Link component={HashLink} smooth to="/#About" variant='h5' color="text.primary" underline='none'>{t('About Us')}</Link>

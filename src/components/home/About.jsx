@@ -13,11 +13,10 @@ export default function About() {
         flexDirection: 'column', 
         alignItems: 'center',
         width: '100%',
-        overflowX: 'hidden', // منع السكرول العرضي نهائياً
+        overflowX: 'hidden', 
         gap: { xs: 4, md: 2 }
       }}
     >
-      {/* الصورة الأولى - فوق */}
       <Box 
         sx={{
           display: 'flex', 
@@ -27,7 +26,7 @@ export default function About() {
         }}
       >
         <Box sx={{
-          width: { xs: '90%', md: '33%' }, // تقليل العرض في الموبايل لترك مساحة
+          width: { xs: '90%', md: '33%' }, 
           height: { xs: '20vh', md: '30vh' },
           backgroundImage: `url(${about1})`,
           backgroundSize: 'contain', 
@@ -37,10 +36,9 @@ export default function About() {
         </Box>
       </Box>
 
-      {/* النص - في المنتصف */}
       <Box sx={{ 
         textAlign: 'center', 
-        px: { xs: 3, md: 10 }, // حماية النص من الالتصاق بالحواف
+        px: { xs: 3, md: 10 }, 
         maxWidth: '100%' 
       }}>
         <Typography variant='h2' paddingBottom={'50px'} sx={{fontSize: { xs: '1rem', md: '2rem' }}}>

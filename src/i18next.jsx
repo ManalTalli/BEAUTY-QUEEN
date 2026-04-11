@@ -35,7 +35,7 @@ i18n
           "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.": "From the latest trends to everyday essentials, we prioritize quality and convenience in every order.",
           "Discover a seamless shopping experience where variety meets value, all in one place.": "Discover a seamless shopping experience where variety meets value, all in one place.",
         }
-      }, // أضفت قوس الإغلاق هنا لترجمة الإنجليزية
+      }, 
       ar: {
         translation: {
           "Home": "الرئيسية",
@@ -68,7 +68,7 @@ i18n
     },
     fallbackLng: "en",
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false 
     }
   });
 

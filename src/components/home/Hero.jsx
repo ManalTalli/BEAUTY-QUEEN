@@ -10,22 +10,22 @@ export default function Hero() {
     <Box id="hero">
     <Box sx={{ display: {  xs: 'none', sm: 'flex', md: 'flex' } ,
     width: '100%',
-    height: '100vh', // يأخذ 90% من ارتفاع الشاشة
+    height: '100vh', 
     backgroundImage: `url(${hero})`,
     backgroundSize: 'cover',
     backgroundPosition: '50px',
-    alignItems: 'center', // لتوسيط المحتوى عمودياً
-    justifyContent: 'center' // لتوسيط المحتوى أفقياً
+    alignItems: 'center', 
+    justifyContent: 'center' 
   }}> <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
     <Box sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'flex-start' }}>
       <Typography 
         variant="h2" 
         sx={{ 
           fontWeight: 'bold', 
-          color: '#5D3A3A', // لون بني دافئ يتناسب مع الوردي
+          color: '#5D3A3A', 
           lineHeight: 1.2,
           mb: 2,
-          fontSize: { xs: '2.5rem', md: '3rem' } // متجاوب مع الشاشات
+          fontSize: { xs: '2.5rem', md: '3rem' }
         }}
       >
         DISCOVER EVERYTHING, <br />
@@ -45,9 +45,7 @@ export default function Hero() {
         Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.
       </Typography>
 
-      {/* الأزرار - Buttons */}
       <Stack direction="row" spacing={2}>
-        {/* الزر الرئيسي - يروح على الشوب */}
         <Button
           component={routerLink}
           to="/shop"
@@ -57,7 +55,7 @@ export default function Hero() {
             color: '#fff',
             padding: '12px 30px',
             fontSize: '1rem',
-            borderRadius: '50px', // حواف دائرية مثل التصميم
+            borderRadius: '50px', 
             textTransform: 'none',
             fontWeight: 'bold',
             boxShadow: '0px 4px 15px rgba(195, 106, 122, 0.3)',
@@ -78,22 +76,22 @@ export default function Hero() {
 
     <Box sx={{ display: {  xs: 'flex', sm: 'none', md: 'none' } ,
     width: '100%',
-    height: '100vh', // يأخذ 90% من ارتفاع الشاشة
+    height: '100vh', 
     backgroundImage: `url(${PhoneHero})`,
     backgroundSize: 'cover',
     backgroundPosition: '0px',
-    alignItems: 'center', // لتوسيط المحتوى عمودياً
-    justifyContent: 'center' // لتوسيط المحتوى أفقياً
+    alignItems: 'center', 
+    justifyContent: 'center' 
   }}> <Container disableGutters sx={{px:3,marginBottom:'100px'}} maxWidth={false} >
     <Box sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'flex-start' }}>
       <Typography 
         variant="h2" 
         sx={{ 
           fontWeight: 'bold', 
-          color: '#5D3A3A', // لون بني دافئ يتناسب مع الوردي
+          color: '#5D3A3A', 
           lineHeight: 1.2,
           mb: 2,
-          fontSize: { xs: '2.5rem', md: '3rem' } // متجاوب مع الشاشات
+          fontSize: { xs: '2.5rem', md: '3rem' } 
         }}
       >
         DISCOVER EVERYTHING, <br />
@@ -115,7 +113,6 @@ export default function Hero() {
 
       {/* الأزرار - Buttons */}
       <Stack direction="row" spacing={2}>
-        {/* الزر الرئيسي - يروح على الشوب */}
         <Button
           component={routerLink}
           to="/shop"
@@ -125,7 +122,7 @@ export default function Hero() {
             color: '#fff',
             padding: '12px 30px',
             fontSize: '1rem',
-            borderRadius: '50px', // حواف دائرية مثل التصميم
+            borderRadius: '50px', 
             textTransform: 'none',
             fontWeight: 'bold',
             boxShadow: '0px 4px 15px rgba(195, 106, 122, 0.3)',

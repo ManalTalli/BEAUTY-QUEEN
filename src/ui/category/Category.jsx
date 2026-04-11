@@ -1,11 +1,34 @@
-import { Button, Card, Grid, Typography } from '@mui/material'
+import { Button, Card, Grid } from '@mui/material'
 
-export default function Category({category,onSelect}) {
+export default function Category({category, onSelect}) {
   return (
-    <Grid  size={{xs:12,sm:6,md:4,lg:2.3}} textAlign='center' >
-       <Card key={category.id} sx={{padding:'10px'}}>
-        <Button onClick={() => onSelect(category.id)} underline='none' color='#111'>{category.name}</Button> 
-        </Card>
-        </Grid>
+    <Grid item sx={{ display: 'flex' }}>
+       <Card 
+         key={category.id} 
+         elevation={0} 
+         sx={{
+           padding: '5px 15px', 
+           borderRight: '1px solid #eee',
+           borderRadius: 0, 
+           whiteSpace: 'nowrap',
+           transition: '0.3s',
+           '&:hover': {
+             bgcolor: 'text.secondary'
+           }
+         }}
+       >
+        <Button
+          onClick={() => onSelect(category.id)}  
+          sx={{ 
+            color: 'text.primary', 
+            fontWeight: 500, 
+            textTransform: 'none', 
+            minWidth: 'auto'
+          }}
+        >
+          {category.name}
+        </Button> 
+       </Card>
+    </Grid>
   )
 }

@@ -5,11 +5,15 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import FilterSort from '../filtersort/FilterSort';
-
+import { Typography } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export default function FilterDrower({ drower, onSelect, currentCat }) {
     const { t } = useTranslation();
+    const location = useLocation();
     const [state, setState] = React.useState({
+  
 
     });
 
@@ -30,13 +34,16 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
             <Divider />
         </Box>
     );
+    React.useEffect(() => {
+        setState({ left: false });
+      }, [location]);
 
 
     return (
         <div>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)} color='black'>{drower}</Button>
+                    <Button onClick={toggleDrawer(anchor, true)}  width={'30%'} ><Typography display={'flex'} alignItems='center' color='text.primary' variant='h3'>{drower}  <FilterListIcon/></Typography></Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}
