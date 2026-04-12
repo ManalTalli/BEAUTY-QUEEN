@@ -114,7 +114,7 @@ export default function Navbar() {
                    <SearchDrower drower={t('Search')} color={'text.primary'} variant={'subtitle1'} />
                 </Box>
 
-                <FormControl variant="standard">
+                <FormControl variant="standard" sx={{ display: { xs: 'none', md: 'flex' }}}>
                   <Select
                     value=""
                     displayEmpty
@@ -138,13 +138,13 @@ export default function Navbar() {
                   </Select>
                 </FormControl>
 
-                <Link component={routerLink} to={'/Cart'} sx={{ ...commonTextStyle, display: 'flex', alignItems: 'center' }}>
+                <Link component={routerLink} to={'/Cart'} sx={{ ...commonTextStyle,display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
                   <Badge badgeContent={cartCount} color="primary">
                     <ShoppingBagOutlinedIcon sx={{ fontSize: '1.4rem' }} />
                   </Badge>
                 </Link>
 
-                <IconButton onClick={toggleTheme} sx={{ p: 0 }}>
+                <IconButton onClick={toggleTheme} sx={{ p: 0 ,display: { xs: 'none', md: 'flex' }}}>
                   {mode === 'light' ? <DarkModeIcon sx={{ color: "text.primary", fontSize: '1.3rem' }} /> : <LightModeIcon sx={{ color: "text.primary", fontSize: '1.3rem' }} />}
                 </IconButton>
               </Box>
