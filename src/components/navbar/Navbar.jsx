@@ -166,7 +166,7 @@ export default function Navbar() {
                 </Link>
               </Box>
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1, justifyContent: 'flex-end' }}>
+              <Box sx={{  alignItems: 'center', gap: '20px', flex: 1, justifyContent: 'flex-end',display: { xs: 'none', md: 'flex' } }}>
                 <FormControl variant='standard'>
                   <Select
                     disableUnderline

@@ -25,7 +25,7 @@ export default function AccountDrower({ drower, color }) {
   const list = (anchor) => (
     <Box
     
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }} 
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }} 
       role="presentation"
     >
       <Container sx={{ paddingLeft: '20px', paddingRight: '20px' }} maxWidth={false}>
@@ -75,6 +75,7 @@ export default function AccountDrower({ drower, color }) {
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            
           >
             {list(anchor)}
           </Drawer>

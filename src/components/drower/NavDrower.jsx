@@ -109,7 +109,7 @@ export default function NavDrower() {
       >
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, color: 'primary.main', letterSpacing: '1px' }}>
-            BEAUTY QUEEN
+            KASHOPE
           </Typography>
           <IconButton onClick={toggleDrawer(false)} sx={{ bgcolor: 'rgba(0,0,0,0.05)' }}>
             <CloseIcon fontSize="small" />
@@ -216,7 +216,7 @@ export default function NavDrower() {
             <NavItem to="/#Service" text={t('Services')} icon={<SettingsSuggestOutlinedIcon />} isHash />
             <NavItem to="/#faq" text={t('FAQ')} icon={<HelpOutlineIcon />} isHash />
           </List>
-          <Box sx={{ mt: 'auto' }}>
+          <Box sx={{  }}>
             <Divider sx={{ my: 2 }} />
 
             <Stack spacing={0.5}>
