@@ -90,6 +90,7 @@ export default function Navbar() {
                 <Link component={routerLink} to={'/Shop'} sx={commonTextStyle}>{t('Shop')}</Link>
                 <Link component={HashLink} smooth to="/#About" sx={commonTextStyle}>{t('About Us')}</Link>
                 <Link component={HashLink} smooth to="/#Service" sx={commonTextStyle}>{t('Services')}</Link>
+                <Link component={HashLink} smooth to="/#faq" sx={commonTextStyle}>{t('FAQ')}</Link>
               </Box>
 
               <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>

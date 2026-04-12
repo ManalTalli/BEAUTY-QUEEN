@@ -1,21 +1,92 @@
-import { Box, Container, Typography } from '@mui/material'
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import useProflie from '../../hooks/useProflie'
+import React from 'react';
+import { Box, Container, Typography, Stack, Tab, Tabs, Divider, useTheme } from '@mui/material';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import useProflie from '../../hooks/useProflie';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import ShoppingBagOutlineIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 export default function Profile() {
-    const {data}= useProflie();
-    console.log(data);
-  return (
-    <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false}>
-        <Typography variant='h2' component='h1'>My Profile</Typography>
-        <Link to=''>info</Link>
-        <Link to='Orders'>Orders</Link>
+  const { data } = useProflie();
+  const theme = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-        <Box>
-            <Outlet/>
-        </Box>
-        
-      </Container>
-  )
+  // تحديد التاب النشط بناءً على المسار الحالي
+  const currentTab = location.pathname.includes('Orders') ? 1 : 0;
+
+  const handleTabChange = (event, newValue) => {
+    if (newValue === 0) navigate('');
+    else navigate('Orders');
+  };
+
+  return (
+    <Container 
+      disableGutters 
+      maxWidth={false} 
+      sx={{ 
+        px: { xs: 3, md: 8 }, 
+        marginTop: '120px', 
+        minHeight: '100vh',
+        bgcolor: 'background.default' 
+      }}
+    >
+      {/* رأس الصفحة: ترحيب مخصص */}
+      <Box sx={{ mb: 6 }}>
+        <Typography 
+          variant="h3" 
+          sx={{ 
+            fontWeight: 800, 
+            fontFamily: "'Playfair Display', serif", 
+            color: 'text.primary',
+            mb: 1
+          }}
+        >
+          {data?.name ? `Hello, ${data.name}` : 'My Profile'}
+        </Typography>
+        <Typography variant="body1" sx={{ color: 'text.secondary', opacity: 0.8 }}>
+          Manage your account settings and track your orders.
+        </Typography>
+      </Box>
+
+      {/* روابط التنقل الداخلي (Tabs Style) */}
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
+        <Tabs 
+          value={currentTab} 
+          onChange={handleTabChange}
+          textColor="primary"
+          indicatorColor="primary"
+          sx={{
+            '& .MuiTab-root': {
+              textTransform: 'none',
+              fontWeight: 700,
+              fontSize: '1rem',
+              minWidth: 120,
+              fontFamily: "'Inter', sans-serif",
+              color: 'text.secondary'
+            },
+            '& .Mui-selected': {
+              color: 'primary.main !important'
+            }
+          }}
+        >
+          <Tab icon={<PersonOutlineIcon sx={{ fontSize: 20 }} />} iconPosition="start" label="Personal Info" />
+          <Tab icon={<ShoppingBagOutlineIcon sx={{ fontSize: 20 }} />} iconPosition="start" label="My Orders" />
+        </Tabs>
+      </Box>
+
+      {/* منطقة عرض المحتوى (Info or Orders) */}
+      <Box 
+        sx={{ 
+          py: 4, 
+          animation: 'fadeIn 0.5s ease-in-out',
+          '@keyframes fadeIn': {
+            from: { opacity: 0, transform: 'translateY(10px)' },
+            to: { opacity: 1, transform: 'translateY(0)' }
+          }
+        }}
+      >
+        <Outlet />
+      </Box>
+    </Container>
+  );
 }
