@@ -29,7 +29,7 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
             sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }}
             role="presentation"
         >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }} >
                 <IconButton onClick={toggleDrawer(anchor, false)}>
                     <CloseIcon />
                 </IconButton>
@@ -37,7 +37,7 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
 
             <Divider />
 
-            <Box sx={{ p: 2 }}>
+            <Box sx={{ p: 2 }} >
                 <FilterSort onSelect={onSelect} currentCat={currentCat} />
             </Box>
         </Box>
@@ -51,7 +51,7 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
         <div>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)} width={'30%'} sx={{display:'flex',alignItems:'center'}}>
+                    <Button onClick={toggleDrawer(anchor, true)} width={'30%'} sx={{display:'flex',alignItems:'center'}} maxWidth="xl">
                         <Typography display={'flex'} alignItems='center' justifyContent={'center'} height={'55px'}  color='text.primary' variant='h3'>
                             {drower}  <FilterListIcon />
                         </Typography>

@@ -9,12 +9,12 @@ const getTheme = (mode) => {
                 ? {
                     primary: { main: '#F8C0C4', contrastText: '#FFF5F5' },
                     background: { default: '#FFF5F5', paper: '#ffffff' },
-                    text: { primary: '#5D4037', secondary: '#FFF5F5' },
+                    text: { primary: '#5D4037', secondary: '#f79fa5' },
                 }
                 : {
                     primary: { main: '#F8C0C4', contrastText: '#5D4037' },
                     background: { default: '#1A1212', paper: '#2D2020' },
-                    text: { primary: '#FFF5F5', secondary: '#FFF5F5' },
+                    text: { primary: '#FFF5F5', secondary: '#F8C0C4' },
                 }),
 
 

@@ -8,8 +8,8 @@ export default function Shop() {
   const [currentCat, setCurrentCat] = useState("ALL");
 
   return (
-      <Container disableGutters sx={{px:3,marginTop:'100px'}} maxWidth={false} >
-        <Box>
+      <Container disableGutters sx={{px:3,marginTop:'150px'}} maxWidth={false} >
+        <Box sx={{px:5}}>
       <Categories onSelect={setCurrentCat} />
       <FilterDrower  onSelect={setCurrentCat} currentCat={currentCat} drower='Filter' />
       </Box>

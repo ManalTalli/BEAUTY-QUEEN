@@ -9,6 +9,7 @@ export default function Categories({ onSelect }) {
 
   if (isLoading) return <Loader />
   if (isError) return <Box sx={{ color: 'red', p: 2 }}>{error.message}</Box>
+  console.log(data);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

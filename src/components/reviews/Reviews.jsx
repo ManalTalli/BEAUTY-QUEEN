@@ -1,52 +1,79 @@
 import React, { useState } from 'react';
-import { Button, Rating, CircularProgress, Typography } from '@mui/material';
+import { Button, Rating, CircularProgress, Typography, TextField, Stack, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useAddReview } from '../../hooks/useAddReviews';
 
 export default function Reviews() {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-    const {id}=useParams();
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
+    const { id } = useParams();
+    const { mutate, error, isError, isPending } = useAddReview(id);
 
-  const { mutate, isLoading, error, isError,isPending } = useAddReview(id);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        mutate({ Rating: rating, Comment: comment }, {
+            onSuccess: () => {
+                setRating(0);
+                setComment('');
+            }
+        });
+    };
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // 2. تنفيذ العملية (إرسال البيانات)
-    mutate({ Rating: rating, Comment: comment }, {
-      onSuccess: () => {
-        // هون بنصفر الفورم بس ينجح الطلب
-        setRating(0);
-        setComment('');
-        alert("Review added successfully!");
-      }
-    });
-  };
+    return (
+        <Box component="form" onSubmit={handleSubmit}>
+            <Stack spacing={3}>
+                <Box>
+                    <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>Your Rating</Typography>
+                    <Rating 
+                        value={rating} 
+                        size="large"
+                        onChange={(event, newValue) => setRating(newValue)} 
+                    />
+                </Box>
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Rating 
-        value={rating} 
-        onChange={(event, newValue) => setRating(newValue)} 
-      />
-      
-      <input 
-        value={comment} 
-        onChange={(e) => setComment(e.target.value)} 
-        placeholder="Write your review..."
-      />
-      {isError && (
-        <Typography style={{ color: 'red' }}>
-          {isError && (error?.response?.data?.errors? Object.values(error.response.data.errors).flat().map((err, i) =>
-           <Typography key={i} style={{ color: 'red' }}>{err}</Typography>) 
-    : <Typography style={{ color: 'red' }}>{error?.response?.data?.message}</Typography>
-  )}
-        </Typography>
-      )}
+                <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="Describe your experience with this product..."
+                    sx={{
+                        '& .MuiOutlinedInput-root': {
+                            borderRadius: '12px',
+                            bgcolor: 'background.paper',
+                            color:'text.secondary'
+                        }
+                    }}
+                />
 
-      
-      <Button disabled={isPending} color='primary' variant='contained' type='submit'>{isPending ? <CircularProgress size={24} /> : 'Send'}</Button>
-    </form>
-  );
+                {isError && (
+                    <Box sx={{ color: 'red' }}>
+                        {error?.response?.data?.errors ? 
+                            Object.values(error.response.data.errors).flat().map((err, i) => (
+                                <Typography key={i} variant="caption" display="block">{err}</Typography>
+                            )) 
+                            : <Typography variant="caption">{error?.response?.data?.message}</Typography>
+                        }
+                    </Box>
+                )}
+
+                <Button 
+                    disabled={isPending || !rating} 
+                    color='primary' 
+                    variant='contained' 
+                    type='submit'
+                    sx={{ 
+                        alignSelf: 'flex-start', 
+                        borderRadius: '10px', 
+                        px: 6, 
+                        py: 1.5,
+                        boxShadow: 'none'
+                    }}
+                >
+                    {isPending ? <CircularProgress size={24} color="inherit" /> : 'Post Review'}
+                </Button>
+            </Stack>
+        </Box>
+    );
 }
