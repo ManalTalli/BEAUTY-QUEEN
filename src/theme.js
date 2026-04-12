@@ -48,10 +48,21 @@ const getTheme = (mode) => {
                 lineHeight: "14.274px",
             },
             body1: {
-                fontFamily:'Readex Pro',
+                fontFamily: 'Readex Pro',
                 fontSize: "15px",
                 fontWeight: 400,
                 lineHeight: "24px",
+            },
+            subtitle1: {
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                color: 'text.primary',
+                textDecoration: 'none',
+                transition: '0.3s',
+                '&:hover': { opacity: 0.7, color: 'primary.main' }
             }
 
 

@@ -1,49 +1,17 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton'; // استيراد زر الأيقونة
-import CloseIcon from '@mui/icons-material/Close'; // استيراد أيقونة الإغلاق
-import { useTranslation } from 'react-i18next';
+import { Box, Drawer, Button, IconButton, Typography, Stack } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import Search from '../search/Search';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Typography } from '@mui/material';
 
-export default function SearchDrower({ drower, color }) {
-  const { t } = useTranslation();
-  const [state, setState] = React.useState({
-    right: false,
-  });
+export default function SearchDrower({ drower, color,variant }) {
+  const [state, setState] = React.useState({ right: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
     setState({ ...state, [anchor]: open });
   };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }} // زدت العرض قليلاً ليكون مناسباً للبحث
-      role="presentation"
-    >
-      {/* رأس الدروير يحتوي على زر الإغلاق */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
-        <IconButton onClick={toggleDrawer(anchor, false)}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
-      
-      <Divider />
-      
-      {/* محتوى البحث */}
-      <Box sx={{ p: 2 }}>
-        <Search />
-      </Box>
-    </Box>
-  );
 
   const location = useLocation();
   useEffect(() => {
@@ -52,27 +20,41 @@ export default function SearchDrower({ drower, color }) {
 
   return (
     <div>
-      {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button 
-            onClick={toggleDrawer(anchor, true)} 
-            sx={{ padding: '0px', display: 'flex', justifyContent: 'flex-start' }}
-          >
-            <Typography color={color} variant='h5' paddingTop={'5px'}>
-              {drower}
-            </Typography>
-          </Button>
-          
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {/* استدعاء الـ list التي تحتوي الآن على زر الإغلاق والبحث */}
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+      <Button 
+        onClick={toggleDrawer('right', true)} 
+        sx={{ padding: '0px 6px 4px 0px ', textTransform: 'none' }}
+      >
+        <Typography color={color} variant={variant} sx={{  textTransform: 'uppercase' }}>
+          {drower}
+        </Typography>
+      </Button>
+      
+      <Drawer
+        anchor="right"
+        open={state.right}
+        onClose={toggleDrawer('right', false)}
+        PaperProps={{
+          sx: { 
+            width: { xs: '70%', sm: 380 }, 
+            borderRadius: { xs: '15px 0 0 15px', sm: '20px 0 0 20px' }, 
+            p: 3,
+            bgcolor: 'background.paper'
+          }
+        }}
+      >
+        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
+          <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
+            Search Products
+          </Typography>
+          <IconButton onClick={toggleDrawer('right', false)} sx={{ bgcolor: 'background.paper' }}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Stack>
+
+        <Box sx={{ flexGrow: 1, overflowY: 'auto',color:'text.primary' }}>
+          <Search />
+        </Box>
+      </Drawer>
     </div>
   );
 }

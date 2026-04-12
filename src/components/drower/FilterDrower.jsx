@@ -1,70 +1,73 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import { useTranslation } from 'react-i18next';
-import FilterSort from '../filtersort/FilterSort';
-import { Typography, IconButton } from '@mui/material'; // أضفنا IconButton
-import { useLocation } from 'react-router-dom';
+import { Box, Drawer, Button, Typography, IconButton, Stack, Divider } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import CloseIcon from '@mui/icons-material/Close'; // أضفنا أيقونة الإغلاق
+import CloseIcon from '@mui/icons-material/Close';
+import FilterSort from '../filtersort/FilterSort';
+import { useLocation } from 'react-router-dom';
 
 export default function FilterDrower({ drower, onSelect, currentCat }) {
-    const { t } = useTranslation();
+    const [state, setState] = React.useState({ right: false });
     const location = useLocation();
-    const [state, setState] = React.useState({
-        right: false
-    });
 
-    const toggleDrawer = (anchor, open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-        setState({ ...state, [anchor]: open });
+    const toggleDrawer = (open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
+        setState({ right: open });
     };
 
-    const list = (anchor) => (
-        <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }}
-            role="presentation"
-        >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }} >
-                <IconButton onClick={toggleDrawer(anchor, false)}>
-                    <CloseIcon />
-                </IconButton>
-            </Box>
-
-            <Divider />
-
-            <Box sx={{ p: 2 }} >
-                <FilterSort onSelect={onSelect} currentCat={currentCat} />
-            </Box>
-        </Box>
-    );
-
     React.useEffect(() => {
-        setState({ right: false, left: false });
+        setState({ right: false });
     }, [location]);
 
     return (
-        <div>
-            {['right'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)} width={'30%'} sx={{display:'flex',alignItems:'center'}} maxWidth="xl">
-                        <Typography display={'flex'} alignItems='center' justifyContent={'center'} height={'55px'}  color='text.primary' variant='h3'>
-                            {drower}  <FilterListIcon />
-                        </Typography>
-                    </Button>
-                    <Drawer
-                        anchor={anchor}
-                        open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                    >
-                        {list(anchor)}
-                    </Drawer>
-                </React.Fragment>
-            ))}
-        </div>
+        <Box>
+            <Button 
+                onClick={toggleDrawer(true)} 
+                startIcon={<FilterListIcon />}
+                sx={{ 
+                    textTransform: 'none', 
+                    color: 'text.primary',
+                    fontSize: '1.1rem',
+                    '&:hover': { bgcolor: 'transparent', opacity: 0.7 }
+                }}
+            >
+                {drower}
+            </Button>
+
+            <Drawer
+                anchor="right"
+                open={state.right}
+                onClose={toggleDrawer(false)}
+                PaperProps={{
+                    sx: { 
+                        width: { xs: '70%', sm: 350 },
+                        p: 3,
+                        borderRadius: { xs: '15px 0 0 15px', sm: '24px 0 0 24px' }
+                    }
+                }}
+            >
+                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+                    <Typography variant="h5" sx={{ fontWeight: 700 }}>Filter & Sort</Typography>
+                    <IconButton onClick={toggleDrawer(false)} sx={{ bgcolor: 'background.paper' }}>
+                        <CloseIcon fontSize="small" />
+                    </IconButton>
+                </Stack>
+                
+                <Divider sx={{ mb: 1 }} />
+
+                {/* Content */}
+                <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+                    <FilterSort onSelect={onSelect} currentCat={currentCat} />
+                </Box>
+                
+                <Button 
+                    variant="contained" 
+                    fullWidth 
+                    onClick={toggleDrawer(false)}
+                    sx={{ mt: 4, borderRadius: '12px', py: 1.5, boxShadow: 'none' }}
+                >
+                    Apply Filters
+                </Button>
+            </Drawer>
+        </Box>
     );
 }

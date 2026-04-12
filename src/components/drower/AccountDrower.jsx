@@ -24,13 +24,11 @@ export default function AccountDrower({ drower, color }) {
 
   const list = (anchor) => (
     <Box
-      // قمت بتصغير العرض هنا من 300 إلى 350 (أو القيمة التي تفضلينها) 
-      // الـ 400 والـ 500 عادة تكون عريضة، الـ 350 مناسبة جداً لمحتوى الحساب
+    
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }} 
       role="presentation"
     >
       <Container sx={{ paddingLeft: '20px', paddingRight: '20px' }} maxWidth={false}>
-        {/* رأس الدرور */}
         <Box display='flex' py={2} alignItems='center' justifyContent='space-between'>
           <Typography component='h3' variant='h4' fontWeight="bold">{t("ACCOUNT")}</Typography>
           <IconButton onClick={toggleDrawer(anchor, false)} size="small">
@@ -40,7 +38,6 @@ export default function AccountDrower({ drower, color }) {
 
         <Divider />
 
-        {/* محتوى الحساب */}
         <Box sx={{ mt: 3 }}>
           <Typography component='h3' variant='h5' color='text.primary' fontWeight="bold" mb={1}>
             {t("WELCOME TO BEAUTY QUEEN")}
@@ -69,7 +66,7 @@ export default function AccountDrower({ drower, color }) {
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <IconButton onClick={toggleDrawer(anchor, true)} sx={{ padding: '5px 0' }}>
-            <Typography variant='h5' sx={{ marginTop: 1 }} color={color}>
+            <Typography variant='subtitle1' sx={{ marginTop: 1 }} color={color}>
               {drower}
             </Typography>
           </IconButton>

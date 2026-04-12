@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, Slider, TextField } from '@mui/material'
+import { Box, CircularProgress, FormControl, InputLabel, MenuItem, Select, Slider, Typography, Stack, TextField } from '@mui/material'
 import { useSortStore } from '../../store/useSortStore';
 import useCategories from '../../hooks/useCategories';
 import { useFilterStore } from '../../store/useFilterStore.JS';
@@ -7,86 +7,95 @@ export default function FilterSort({ onSelect, currentCat }) {
     const { data, isLoading, isError, error } = useCategories();
     const { value, updateValue } = useFilterStore();
     const { sortedBy, sortedOrder, setSortedBy, setSortedOrder } = useSortStore();
-    if (isLoading) return <CircularProgress />
-    if (isError) return <Box color={'red'}>{error.message}</Box>
-    const handleChangeFilter = (event, newValue) => {
-        updateValue(newValue);
-    };
-    const handleChangeSortBy = (event) => {
-        setSortedBy(event.target.value);
-    };
-    const handleChangeSort = (event) => {
-        setSortedOrder(event.target.value);
-    };
-    const handleChangeCat = (event) => {
-        onSelect(event.target.value);
-    };
+
+    if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}><CircularProgress size={24} /></Box>
+    if (isError) return <Typography color='error'>{error.message}</Typography>
+
     return (
-        <div>
-            <Box height={'100vh'}>
-                <Box display={'flex'} alignItems={'center'} justifyContent={'center'} paddingTop={'100px'}>
-                    <Slider sx={{ width: '350px' }}
+        <Stack spacing={4} sx={{ mt: 2 }}>
+            <Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
+                    Price Range
+                </Typography>
+                <Box sx={{ px: 2 }}>
+                    <Slider
                         value={value}
-                        onChange={handleChangeFilter}
+                        onChange={(e, newValue) => updateValue(newValue)}
                         min={0}
                         max={2000}
                         valueLabelDisplay="auto"
+                        sx={{ color: 'primary.main' }}
                     />
                 </Box>
-                <TextField value={value[0]} alignItems={'center'}></TextField>
-                <TextField value={value[1]} alignItems={'center'}></TextField>
+                <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+                    <TextField 
+                        label="Min" 
+                        value={value[0]} 
+                        size="small" 
+                        disabled 
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
+                    />
+                    <TextField 
+                        label="Max" 
+                        value={value[1]} 
+                        size="small" 
+                        disabled 
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
+                    />
+                </Stack>
+            </Box>
 
-
-                <Box paddingTop={'50px'}>
-                    <FormControl fullWidth>
-                        <InputLabel id="sortedBy-label">Sort</InputLabel>
+            <Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
+                    Sort By
+                </Typography>
+                <Stack spacing={2}>
+                    <FormControl fullWidth size="small">
+                        <InputLabel>Criteria</InputLabel>
                         <Select
-                            labelId="sortedBy-label"
-                            id="sortedBy"
                             value={sortedBy}
-                            label="Sort"
-                            onChange={handleChangeSortBy}
+                            label="Criteria"
+                            onChange={(e) => setSortedBy(e.target.value)}
+                            sx={{ borderRadius: '10px' }}
                         >
                             <MenuItem value="name">Name</MenuItem>
                             <MenuItem value="price">Price</MenuItem>
                             <MenuItem value="rate">Rate</MenuItem>
                         </Select>
                     </FormControl>
-                </Box>
-                <Box>
-                    <FormControl fullWidth>
-                        <InputLabel id="sorted-label">Sort</InputLabel>
+
+                    <FormControl fullWidth size="small">
+                        <InputLabel>Order</InputLabel>
                         <Select
-                            labelId="sorted-label"
-                            id="sorted"
                             value={sortedOrder}
-                            label="Sortorder"
-                            onChange={handleChangeSort}
+                            label="Order"
+                            onChange={(e) => setSortedOrder(e.target.value)}
+                            sx={{ borderRadius: '10px' }}
                         >
-                            <MenuItem value="asc">asc</MenuItem>
-                            <MenuItem value="desc">desc</MenuItem>
+                            <MenuItem value="asc">Ascending</MenuItem>
+                            <MenuItem value="desc">Descending</MenuItem>
                         </Select>
                     </FormControl>
-                </Box>
+                </Stack>
+            </Box>
 
-                <FormControl fullWidth>
-                    <InputLabel id="category-label">Category</InputLabel>
+            <Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
+                    Category
+                </Typography>
+                <FormControl fullWidth size="small">
                     <Select
-                        labelId="category-label"
-                        id="Category"
                         value={currentCat}
-                        label="Category"
-                        onChange={handleChangeCat}
+                        onChange={(e) => onSelect(e.target.value)}
+                        sx={{ borderRadius: '10px' }}
                     >
-                        <MenuItem value="ALL">ALL</MenuItem>
-                        {data.response.data.map(category =>
-                            <MenuItem value={category.id}>{category.name}</MenuItem>
-
-                        )}
+                        <MenuItem value="ALL">All Categories</MenuItem>
+                        {data.response.data.map(category => (
+                            <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
-
             </Box>
-        </div>
+        </Stack>
     )
 }
