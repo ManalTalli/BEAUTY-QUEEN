@@ -6,12 +6,15 @@ import { Box, Button, Card, CardMedia, Container, Rating, Typography, Stack, Div
 import useAddToCart from '../../hooks/useAddToCart';
 import Reviews from '../../components/reviews/Reviews';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import { useTranslation } from 'react-i18next';
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useProduct(id);
   const { mutate, isPending } = useAddToCart();
   const checkout = useNavigate();
+  const { t } = useTranslation();
+  
   if (isLoading) return <Loader />
   if (isError) return <Box sx={{ color: 'red', textAlign: 'center', mt: 5 }}>{error.message}</Box>
 
@@ -38,7 +41,7 @@ export default function ProductDetails() {
 
           <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1 }}>
             <Rating readOnly value={product.rate} precision={0.5} size="small" />
-            <Chip label="In Stock" color="success" size="small" variant="soft" sx={{ bgcolor: '#E8F5E9', color: '#2E7D32', fontWeight: 'bold' }} />
+            <Chip label={t("In Stock")} color="success" size="small" variant="soft" sx={{ bgcolor: '#E8F5E9', color: '#2E7D32', fontWeight: 'bold' }} />
           </Stack>
 
           <Stack direction="row" spacing={2} alignItems="baseline" sx={{ mb: 3 }}>
@@ -48,7 +51,7 @@ export default function ProductDetails() {
           </Stack>
 
           <Typography variant="body1" color="text.primary" sx={{ lineHeight: 1.8, mb: 4 }}>
-            {product.description || "Description goes here..."}
+            {product.description}
           </Typography>
 
           <Divider sx={{ mb: 4 }} />
@@ -70,17 +73,17 @@ export default function ProductDetails() {
                 '&:hover': { boxShadow: 'none', opacity: 0.9 }
               }}
             >
-              {isPending ? 'Adding...' : 'Add To Cart'}
+              {isPending ? t('Adding...') : t('Add To Cart')}
             </Button>
             <Button onClick={() => checkout('/Cart/Checkout')} variant="outlined" size="large" sx={{ borderRadius: '12px', textTransform: 'none', borderColor: 'primary.text', color: 'primary.text' }}>
-              Buy Now
+              {t('Buy Now')}
             </Button>
           </Stack>
         </Box>
       </Stack>
 
       <Box sx={{ mt: 10 }}>
-        <Typography variant="h5" sx={{ fontWeight: 700, mb: 4 }}>Customer Reviews</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 4 }}>{t('Customer Reviews')}</Typography>
 
         <Stack spacing={4}>
           {product?.reviews.map((prod, index) => (
@@ -102,9 +105,8 @@ export default function ProductDetails() {
           ))}
         </Stack>
 
-        {/* إضافة ريفيو جديد */}
         <Box sx={{ mt: 6, p: 4, borderRadius: '24px' }}>
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>Leave a Review</Typography>
+          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>{t('Leave a Review')}</Typography>
           <Reviews />
         </Box>
       </Box>

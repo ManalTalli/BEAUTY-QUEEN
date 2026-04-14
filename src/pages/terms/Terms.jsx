@@ -1,13 +1,17 @@
 import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 import BackHome from '../../components/backHome/BackHome'
+import { useTranslation } from 'react-i18next';
 
 export default function Terms() {
+  const { t } = useTranslation();
   return (
+    
+    
     <Box>
     <BackHome />
     <Container disableGutters sx={{px:2,marginTop:'80px',}} maxWidth={false}>
-      <Typography component='h1' variant='h1' paddingBottom={'20px'}>Terms of service</Typography>
+      <Typography component='h1' variant='h1' paddingBottom={'20px'}>{t('Terms of use')}</Typography>
       <Typography paddingBottom={'20px'}>OVERVIEW
 This website is operated by Beauty Queen . Throughout the site, the terms “we”, “us” and “our” refer to Beauty Queen . Beauty Queen offers this website, including all information, tools and Services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.
 

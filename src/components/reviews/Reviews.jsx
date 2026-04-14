@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Button, Rating, CircularProgress, Typography, TextField, Stack, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useAddReview } from '../../hooks/useAddReviews';
+import { useTranslation } from 'react-i18next';
 
 export default function Reviews() {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const { id } = useParams();
     const { mutate, error, isError, isPending } = useAddReview(id);
+const { t } = useTranslation();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +25,7 @@ export default function Reviews() {
         <Box component="form" onSubmit={handleSubmit}>
             <Stack spacing={3}>
                 <Box>
-                    <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>Your Rating</Typography>
+                    <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>{t('Your Rating')}</Typography>
                     <Rating 
                         value={rating} 
                         size="large"
@@ -37,7 +39,7 @@ export default function Reviews() {
                     rows={4}
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    placeholder="Describe your experience with this product..."
+                    placeholder={t("Describe your experience with this product...")}
                     sx={{
                         '& .MuiOutlinedInput-root': {
                             borderRadius: '12px',
@@ -71,7 +73,7 @@ export default function Reviews() {
                         boxShadow: 'none'
                     }}
                 >
-                    {isPending ? <CircularProgress size={24} color="inherit" /> : 'Post Review'}
+                    {isPending ? <CircularProgress size={24} color="inherit" /> : t('Post Review')}
                 </Button>
             </Stack>
         </Box>

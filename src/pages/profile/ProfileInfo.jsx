@@ -19,7 +19,7 @@ export default function ProfileInfo() {
   ];
 
   return (
-    <Box   sx={{ maxWidth: '60%' }}>
+    <Box   sx={{ maxWidth:{sm:'80%',md:'60%' } }}>
       <Paper 
         elevation={0} 
         sx={{ 

@@ -4,9 +4,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import Search from '../search/Search';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function SearchDrower({ drower, color,variant }) {
   const [state, setState] = React.useState({ right: false });
+const { t } = useTranslation();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
@@ -44,7 +46,7 @@ export default function SearchDrower({ drower, color,variant }) {
       >
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
-            Search Products
+            {t('Search Products')}
           </Typography>
           <IconButton onClick={toggleDrawer('right', false)} sx={{ bgcolor: 'background.paper' }}>
             <CloseIcon fontSize="small" />

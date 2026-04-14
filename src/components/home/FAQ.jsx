@@ -17,30 +17,31 @@ const float = keyframes`
   50% { opacity: 0.5; }
   100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
 `;
+  
 
-const faqs = [
-  {
-    q: "How can I track my order?",
-    a: "You can easily track your order through the 'My Orders' section in your account profile, or by using the tracking link sent to your email."
-  },
-  {
-    q: "What is your return policy?",
-    a: "We offer a 14-day return policy for most products. Items must be in their original packaging and unused."
-  },
-  {
-    q: "Do you offer international shipping?",
-    a: "Yes, we ship our products worldwide. Shipping costs and delivery times vary depending on your location."
-  },
-  {
-    q: "Are the beauty products original?",
-    a: "Absolutely. All our products, including skincare and electronics, are sourced directly from authorized distributors."
-  }
-];
 
 export default function FAQ() {
   const { t } = useTranslation();
     const theme = useTheme();
   
+const faqs = [
+  {
+    q: t("How can I track my order?"),
+    a: t("You can easily track your order through the 'My Orders' section in your account profile, or by using the tracking link sent to your email.")
+  },
+  {
+    q: t("What is your return policy?"),
+    a: t("We offer a 14-day return policy for most products. Items must be in their original packaging and unused.")
+  },
+  {
+    q: t("Do you offer international shipping?"),
+    a: t("Yes, we ship our products worldwide. Shipping costs and delivery times vary depending on your location.")
+  },
+  {
+    q: t("Are the beauty products original?"),
+    a: t("Absolutely. All our products, including skincare and electronics, are sourced directly from authorized distributors.")
+  }
+];
   return (
     <Box id='faq' sx={{ 
       

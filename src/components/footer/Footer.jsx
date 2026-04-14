@@ -2,10 +2,11 @@ import React from 'react';
 import { Box, Container, Grid, Typography, Link, TextField, IconButton, Divider, useTheme } from '@mui/material';
 import { Send } from '@mui/icons-material';
 import { HashLink } from 'react-router-hash-link';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const theme = useTheme();
-
+const { t } = useTranslation();
   return (
     <Box
       component="footer"
@@ -31,21 +32,21 @@ const Footer = () => {
 
           <Grid item xs={12} md={4}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2, color: 'text.primary' }}>
-              just moved
+              {t('Everything You Love.')}
             </Typography>
             <Typography variant="body1" sx={{ maxWidth: 280, lineHeight: 1.6 }}>
-              Guys we are a great bunch and nothing was too hard for us to move. Very seamless move!.
+              {t('From daily essentials to your unique finds, we bring the best of everything right to your doorstep. All in one place.')}
             </Typography>
           </Grid>
 
           <Grid item xs={6} md={2}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
-              Company
+              {t('Company')}
             </Typography>
             {[
-              { name: 'About us', targetId: 'About' },
-              { name: 'Services', targetId: 'Service' },
-              { name: 'FAQ', targetId: 'faq' }
+              { name: t('About Us'), targetId: 'About' },
+              { name: t('Services'), targetId: 'Service' },
+              { name: t('FAQ'), targetId: 'faq' }
             ].map((item) => (
               <Link
               component={HashLink}
@@ -63,13 +64,13 @@ const Footer = () => {
 
           <Grid item xs={6} md={2}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
-              Social
+              {t('Social')}
             </Typography>
             {[
-              { name: 'LinkedIn', url: 'https://www.linkedin.com' },
-              { name: 'Twitter', url: 'https://www.twitter.com' },
-              { name: 'Facebook', url: 'https://www.facebook.com' },
-              { name: 'Instagram', url: 'https://www.instagram.com' }
+              { name: t('LinkedIn'), url: 'https://www.linkedin.com' },
+              { name: t('Twitter'), url: 'https://www.twitter.com' },
+              { name: t('Facebook'), url: 'https://www.facebook.com' },
+              { name: t('Instagram'), url: 'https://www.instagram.com' }
             ].map((item) => (
               <Link
                 key={item.name}
@@ -88,16 +89,16 @@ const Footer = () => {
 
           <Grid item xs={12} md={3}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
-              Stay up to date
+              {t('Stay up to date')}
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Subscribe to our newsletter
+              {t('Subscribe to our newsletter')}
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
               <TextField
                 variant="outlined"
                 size="small"
-                placeholder="Enter your e-mail"
+                placeholder={t("Enter your e-mail")}
                 sx={{
                   backgroundColor: 'rgba(255, 255, 255, 0.3)',
                   borderRadius: 1,
@@ -119,15 +120,15 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ my: 2, borderColor: 'rgba(0,0,0,0.1)' }} />
+        <Divider sx={{ my: 1, borderColor: 'rgba(0,0,0,0.1)' }} />
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="caption">
-            © 2025 justmoved ramdesignz - All rights reserved
+            {t('© All rights reserved')}
           </Typography>
           <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link href="#" underline="none" color="inherit" variant="caption">Privacy Policy</Link>
-            <Link href="#" underline="none" color="inherit" variant="caption">Terms of use</Link>
+            <Link href="#" underline="none" color="inherit" variant="caption">{t('Privacy Policy')}</Link>
+            <Link href="/Terms" underline="none" color="inherit" variant="caption">{t('Terms of use')}</Link>
           </Box>
         </Box>
       </Container>

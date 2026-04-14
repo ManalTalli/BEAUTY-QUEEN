@@ -95,8 +95,8 @@ export default function Hero() {
           fontSize: { xs: '2.5rem', md: '3rem' } 
         }}
       >
-        DISCOVER EVERYTHING, <br />
-        <span style={{ color: '#C36A7A' }}>YOUR WAY.</span>
+        {t('DISCOVER EVERYTHING,')} <br />
+        <span style={{ color: '#C36A7A' }}>{t('YOUR WAY.')}</span>
       </Typography>
 
       <Typography 
@@ -108,7 +108,7 @@ export default function Hero() {
           maxWidth: '450px' 
         }}
       >
-        Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.
+        {t('Shop curated picks across fashion, home, and lifestyle with fast, secure shipping.')}
       </Typography>
 
       <Stack direction="row" spacing={2}>
@@ -131,7 +131,7 @@ export default function Hero() {
             }
           }}
         >
-          START SHOPPING NOW!
+          {t('START SHOPPING NOW!')}
         </Button>
       </Stack>
     </Box></Container></Box>

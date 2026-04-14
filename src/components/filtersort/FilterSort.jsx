@@ -2,11 +2,13 @@ import { Box, CircularProgress, FormControl, InputLabel, MenuItem, Select, Slide
 import { useSortStore } from '../../store/useSortStore';
 import useCategories from '../../hooks/useCategories';
 import { useFilterStore } from '../../store/useFilterStore.JS';
+import { useTranslation } from 'react-i18next';
 
 export default function FilterSort({ onSelect, currentCat }) {
     const { data, isLoading, isError, error } = useCategories();
     const { value, updateValue } = useFilterStore();
     const { sortedBy, sortedOrder, setSortedBy, setSortedOrder } = useSortStore();
+const { t } = useTranslation();
 
     if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}><CircularProgress size={24} /></Box>
     if (isError) return <Typography color='error'>{error.message}</Typography>
@@ -15,7 +17,7 @@ export default function FilterSort({ onSelect, currentCat }) {
         <Stack spacing={4} sx={{ mt: 2 }}>
             <Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
-                    Price Range
+                    {t('Price Range')}
                 </Typography>
                 <Box sx={{ px: 2 }}>
                     <Slider
@@ -47,33 +49,33 @@ export default function FilterSort({ onSelect, currentCat }) {
 
             <Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
-                    Sort By
+                    {t('Sort By')}
                 </Typography>
                 <Stack spacing={2}>
                     <FormControl fullWidth size="small">
-                        <InputLabel>Criteria</InputLabel>
+                        <InputLabel>{t('Criteria')}</InputLabel>
                         <Select
                             value={sortedBy}
                             label="Criteria"
                             onChange={(e) => setSortedBy(e.target.value)}
                             sx={{ borderRadius: '10px' }}
                         >
-                            <MenuItem value="name">Name</MenuItem>
-                            <MenuItem value="price">Price</MenuItem>
-                            <MenuItem value="rate">Rate</MenuItem>
+                            <MenuItem value="name">{t('Name')}</MenuItem>
+                            <MenuItem value="price">{t('Price')}</MenuItem>
+                            <MenuItem value="rate">{t('Rate')}</MenuItem>
                         </Select>
                     </FormControl>
 
                     <FormControl fullWidth size="small">
-                        <InputLabel>Order</InputLabel>
+                        <InputLabel>{t('Order')}</InputLabel>
                         <Select
                             value={sortedOrder}
                             label="Order"
                             onChange={(e) => setSortedOrder(e.target.value)}
                             sx={{ borderRadius: '10px' }}
                         >
-                            <MenuItem value="asc">Ascending</MenuItem>
-                            <MenuItem value="desc">Descending</MenuItem>
+                            <MenuItem value="asc">{t('Ascending')}</MenuItem>
+                            <MenuItem value="desc">{t('Descending')}</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>
@@ -81,7 +83,7 @@ export default function FilterSort({ onSelect, currentCat }) {
 
             <Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
-                    Category
+                    {t('Category')}
                 </Typography>
                 <FormControl fullWidth size="small">
                     <Select
@@ -89,7 +91,7 @@ export default function FilterSort({ onSelect, currentCat }) {
                         onChange={(e) => onSelect(e.target.value)}
                         sx={{ borderRadius: '10px' }}
                     >
-                        <MenuItem value="ALL">All Categories</MenuItem>
+                        <MenuItem value="ALL">{t('All Categories')}</MenuItem>
                         {data.response.data.map(category => (
                             <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
                         ))}

@@ -4,10 +4,12 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterSort from '../filtersort/FilterSort';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function FilterDrower({ drower, onSelect, currentCat }) {
     const [state, setState] = React.useState({ right: false });
     const location = useLocation();
+const { t } = useTranslation();
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
@@ -46,7 +48,7 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
                 }}
             >
                 <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
-                    <Typography variant="h5" sx={{ fontWeight: 700 }}>Filter & Sort</Typography>
+                    <Typography variant="h5" sx={{ fontWeight: 700 }}>{t('Filter & Sort')}</Typography>
                     <IconButton onClick={toggleDrawer(false)} sx={{ bgcolor: 'background.paper' }}>
                         <CloseIcon fontSize="small" />
                     </IconButton>
@@ -54,7 +56,6 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
                 
                 <Divider sx={{ mb: 1 }} />
 
-                {/* Content */}
                 <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
                     <FilterSort onSelect={onSelect} currentCat={currentCat} />
                 </Box>
@@ -65,7 +66,7 @@ export default function FilterDrower({ drower, onSelect, currentCat }) {
                     onClick={toggleDrawer(false)}
                     sx={{ mt: 4, borderRadius: '12px', py: 1.5, boxShadow: 'none' }}
                 >
-                    Apply Filters
+                    {t('Apply Filters')}
                 </Button>
             </Drawer>
         </Box>

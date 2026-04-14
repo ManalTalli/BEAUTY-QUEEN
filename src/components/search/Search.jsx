@@ -6,17 +6,19 @@ import { List, Typography, TextField, ListItem, ListItemAvatar, Avatar, ListItem
 import Link from '@mui/material/Link';
 import { Link as routerLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import { useTranslation } from 'react-i18next';
 
 export default function Search() {
   const query = useProducts();
   const products = query.data?.response.data;
   const { filterData, searchTerm, setSearchTerm } = useSearch(products);
+const { t } = useTranslation();
 
   return (
     <Box>
       <TextField 
         fullWidth
-        placeholder="Search for products..."
+        placeholder={t("Search for products...")}
         value={searchTerm} 
         onChange={(e) => setSearchTerm(e.target.value)}
         variant="outlined"
@@ -73,7 +75,7 @@ export default function Search() {
           ))
         ) : searchTerm ? (
           <Typography variant="body2" sx={{ textAlign: 'center', color: 'text.primary', mt: 2 }}>
-            No products found 
+            {t('No products found')} 
           </Typography>
         ) : null}
       </List>

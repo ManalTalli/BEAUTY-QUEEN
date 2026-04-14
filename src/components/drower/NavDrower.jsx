@@ -145,7 +145,7 @@ export default function NavDrower() {
                   <ListItemIcon sx={{ minWidth: 40, color: 'text.primary' }}>
                     {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
                   </ListItemIcon>
-                  <ListItemText primary={<Typography sx={commonTextStyle}>{mode === 'light' ? 'Dark Mode' : 'Light Mode'}</Typography>} />
+                  <ListItemText primary={<Typography sx={commonTextStyle}>{mode === 'light' ? t('Dark Mode') : t('Light Mode')}</Typography>} />
                 </ListItemButton>
               </ListItem>
 
@@ -247,7 +247,7 @@ export default function NavDrower() {
                   <ListItemIcon sx={{ minWidth: 40, color: 'text.primary' }}>
                     {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
                   </ListItemIcon>
-                  <ListItemText primary={<Typography sx={commonTextStyle}>{mode === 'light' ? 'Dark Mode' : 'Light Mode'}</Typography>} />
+                  <ListItemText primary={<Typography sx={commonTextStyle}>{mode === 'light' ? t('Dark Mode') : t('Light Mode')}</Typography>} />
                 </ListItemButton>
               </ListItem>
 
