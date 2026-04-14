@@ -11,7 +11,6 @@ export default function Profile() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // تحديد التاب النشط بناءً على المسار الحالي
   const currentTab = location.pathname.includes('Orders') ? 1 : 0;
 
   const handleTabChange = (event, newValue) => {
@@ -30,7 +29,6 @@ export default function Profile() {
         bgcolor: 'background.default' 
       }}
     >
-      {/* رأس الصفحة: ترحيب مخصص */}
       <Box sx={{ mb: 6 }}>
         <Typography 
           variant="h3" 
@@ -48,7 +46,6 @@ export default function Profile() {
         </Typography>
       </Box>
 
-      {/* روابط التنقل الداخلي (Tabs Style) */}
       <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
         <Tabs 
           value={currentTab} 
@@ -74,7 +71,6 @@ export default function Profile() {
         </Tabs>
       </Box>
 
-      {/* منطقة عرض المحتوى (Info or Orders) */}
       <Box 
         sx={{ 
           py: 4, 

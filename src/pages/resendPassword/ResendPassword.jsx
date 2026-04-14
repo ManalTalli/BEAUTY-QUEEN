@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form'; // لضمان نفس آلية اللوجن
+import { useForm } from 'react-hook-form'; 
 import useResendPassword from '../../hooks/useResendPassword';
 import { 
   Box, Container, Typography, TextField, Button, Stack, Paper, InputAdornment 
