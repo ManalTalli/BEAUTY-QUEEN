@@ -1,13 +1,14 @@
 import React from 'react';
 import {
   Box, Button, Container, IconButton, Typography, Grid, 
-  Divider, Stack, useTheme, Card, CardMedia
+  Divider, Stack, useTheme, Paper
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 import useCart from '../../hooks/useCart';
 import useRemoveFromCart from '../../hooks/useRemoveFromCart';
@@ -41,6 +42,36 @@ export default function Cart() {
     color: 'text.primary'
   };
 
+  if (!data.items || data.items.length === 0) {
+    return (
+      <Container sx={{ mt: '150px', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Paper elevation={0} sx={{ p: { xs: 4, md: 8 }, borderRadius: '20px', bgcolor: 'transparent' }}>
+          <ShoppingBagOutlinedIcon sx={{ fontSize: 100, color: 'secondary.main', opacity: 0.5, mb: 3 }} />
+          <Typography variant="h4" sx={{ ...commonTextStyle, fontWeight: 800, mb: 2 }}>
+            {t('Your cart is empty')}
+          </Typography>
+          <Typography sx={{ color: 'text.secondary', mb: 4, maxWidth: '400px', mx: 'auto' }}>
+            {t('Looks like you haven\'t added anything to your cart yet. Explore our latest products and find something you love!')}
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => navigate('/Shop')}
+            sx={{
+              py: 2,
+              px: 6,
+              borderRadius: '50px',
+              bgcolor: 'text.primary',
+              fontWeight: 700,
+              '&:hover': { bgcolor: 'secondary.main' }
+            }}
+          >
+            {t('Start Shopping')}
+          </Button>
+        </Paper>
+      </Container>
+    );
+  }
+
   return (
     <Container disableGutters maxWidth={false} sx={{ mt: '150px', minHeight: '100vh' ,display:'flex',justifyContent:'center' }}>
       <Grid container>
@@ -51,48 +82,41 @@ export default function Cart() {
         }}>
           <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: 5 }}>
             <Typography variant="h4" sx={{ ...commonTextStyle, fontWeight: 800 }}>{t('My Cart')}</Typography>
-            <Typography sx={{ color: 'secondary.main', fontWeight: 500 }}>{data.items?.length || 0} {t('Items')}</Typography>
+            <Typography sx={{ color: 'secondary.main', fontWeight: 500 }}>{data.items.length} {t('Items')}</Typography>
           </Stack>
 
-          {data.items?.length === 0 ? (
-            <Typography sx={{ py: 10, textAlign: 'center', opacity: 0.5 }}>{t('Your cart is empty')}</Typography>
-          ) : (
-            data.items.map((item) => (
-              <Box key={item.productId} sx={{ mb: 4 }}>
-                <Grid container spacing={3} alignItems="center">
-                  
-
-                  <Grid item xs={8} sm={4}>
-                    <Typography sx={{ ...commonTextStyle, fontSize: '0.85rem', fontWeight: 700 }}>{item.productName}</Typography>
-                    
-                  </Grid>
-
-                  <Grid item xs={6} sm={3}>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <IconButton size="small" onClick={() => handleUpdateQty(item.productId, '-')}>
-                            <RemoveIcon fontSize="small" />
-                        </IconButton>
-                        <Typography sx={{ fontWeight: 600, minWidth: '20px', textAlign: 'center' }}>{item.count}</Typography>
-                        <IconButton size="small" onClick={() => handleUpdateQty(item.productId, '+')}>
-                            <AddIcon fontSize="small" />
-                        </IconButton>
-                    </Stack>
-                  </Grid>
-
-                  <Grid item xs={4} sm={2}>
-                    <Typography sx={{ fontWeight: 700, color: 'text.primary' }}>${item.totalPrice}</Typography>
-                  </Grid>
-
-                  <Grid item xs={2} sm={1}>
-                    <IconButton onClick={() => removeItem(item.productId)} disabled={removeItempend}>
-                      <DeleteOutlineIcon sx={{ color: 'secondary.main', '&:hover': { color: 'red' } }} />
-                    </IconButton>
-                  </Grid>
+          {data.items.map((item) => (
+            <Box key={item.productId} sx={{ mb: 4 }}>
+              <Grid container spacing={3} alignItems="center">
+                <Grid item xs={8} sm={4}>
+                  <Typography sx={{ ...commonTextStyle, fontSize: '0.85rem', fontWeight: 700 }}>{item.productName}</Typography>
                 </Grid>
-                <Divider sx={{ mt: 3, opacity: 0.5 }} />
-              </Box>
-            ))
-          )}
+
+                <Grid item xs={6} sm={3}>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                      <IconButton size="small" onClick={() => handleUpdateQty(item.productId, '-')}>
+                          <RemoveIcon fontSize="small" />
+                      </IconButton>
+                      <Typography sx={{ fontWeight: 600, minWidth: '20px', textAlign: 'center' }}>{item.count}</Typography>
+                      <IconButton size="small" onClick={() => handleUpdateQty(item.productId, '+')}>
+                          <AddIcon fontSize="small" />
+                      </IconButton>
+                  </Stack>
+                </Grid>
+
+                <Grid item xs={4} sm={2}>
+                  <Typography sx={{ fontWeight: 700, color: 'text.primary' }}>${item.totalPrice}</Typography>
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <IconButton onClick={() => removeItem(item.productId)} disabled={removeItempend}>
+                    <DeleteOutlineIcon sx={{ color: 'secondary.main', '&:hover': { color: 'red' } }} />
+                  </IconButton>
+                </Grid>
+              </Grid>
+              <Divider sx={{ mt: 3, opacity: 0.5 }} />
+            </Box>
+          ))}
 
           <Button 
             onClick={() => removeAllitem()}

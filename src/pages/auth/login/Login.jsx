@@ -67,7 +67,7 @@ export default function Login() {
       <Box >
       <Box component={'form'} onSubmit={handleSubmit(loginForm)} display={'flex'} flexDirection={'column'} marginTop='40px'  sx={{ maxWidth:{xs:'80%',sm:'80%',md:'35%' } }} >
         <TextField {...register('email')} label={t("EMAIL")} variant='standard' error={errors.email} helperText={errors.email?.message} className={style.customTextField} />
-        <TextField {...register('password')} label={t("PASSWORD")} variant='standard' error={errors.password} helperText={errors.password?.message} className={style.customTextField} />
+        <TextField {...register('password')} type='password' label={t("PASSWORD")} variant='standard' error={errors.password} helperText={errors.password?.message} className={style.customTextField} />
         {isSubmitting ? <CircularProgress color='text.primary' sx={{ marginTop: '20px', marginBottom: '60px' }} /> :
           <Box width={'100%'} marginTop='20px' display={'flex'} gap={4} >
             <Submit text={t('Login')} variant='contained' type='submit' disabled={isSubmitting} /></Box>

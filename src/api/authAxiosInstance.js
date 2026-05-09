@@ -31,7 +31,7 @@ authAxiosInstance.interceptors.response.use((response) => response, async (error
         catch (error) {
             useAuthStore.getState().logout();
             window.location.href = '/login';
-            return Promise.reject(error);
+            return Promise.reject(error);  
         }
     }
     return Promise.reject(error);

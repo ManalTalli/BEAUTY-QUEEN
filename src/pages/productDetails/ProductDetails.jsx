@@ -75,9 +75,7 @@ export default function ProductDetails() {
             >
               {isPending ? t('Adding...') : t('Add To Cart')}
             </Button>
-            <Button onClick={() => checkout('/Cart/Checkout')} variant="outlined" size="large" sx={{ borderRadius: '12px', textTransform: 'none', borderColor: 'primary.text', color: 'primary.text' }}>
-              {t('Buy Now')}
-            </Button>
+            
           </Stack>
         </Box>
       </Stack>
